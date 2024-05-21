@@ -25,6 +25,6 @@
     "sugar-high": "^0.6.0",
     "tailwindcss": "4.0.0-alpha.13",
     "typescript": "5.3.3",
-    "veda-ui": "https://github.com/nasa-impact/veda-ui#test-dependency"
+    "@developmentseed/veda-ui": "^4.0.0"
   }
 }
