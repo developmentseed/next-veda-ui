@@ -4,6 +4,7 @@ import {
   createUITheme,
 } from "@devseed-ui/theme-provider";
 import DataCatalogWrapper from 'app/components/data-catalog-wrapper'
+import { DataCatalog } from "@developmentseed/veda-ui"
 
 const VEDA_OVERRIDE_THEME = {
   zIndices: {

@@ -1,6 +1,6 @@
 "use client"
 
-import { DataCatalog } from "package/app/scripts"
+import { DataCatalog } from "@developmentseed/veda-ui"
 
 export default function DataCatalogWrapper () {
   return <DataCatalog datasets={[]} />
