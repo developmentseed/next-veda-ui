@@ -5,7 +5,6 @@ import { GeistMono } from 'geist/font/mono'
 import { Navbar } from './components/nav'
 import Footer from './components/footer'
 import { baseUrl } from './sitemap'
-import { PageMainContent } from "app/lib/veda-ui";
 import { setDatasets } from 'app/store/provider';
 import { getDatasets } from 'app/blog/utils';
 
@@ -57,11 +56,9 @@ export default function RootLayout({
     >
       <body>
         <main>
-        <PageMainContent>
           <Navbar />
             {children}
           <Footer />
-        </PageMainContent>
         </main>
       </body>
       
