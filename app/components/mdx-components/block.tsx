@@ -86,7 +86,8 @@ function EnhancedBlock(props) {
   
   return (
     <DevseedUiThemeProvider theme={createUITheme(VEDA_OVERRIDE_THEME)}>
-      <VEDA.Block {...props} />
+      {/* <VEDA.Block {...props} /> */}
+      <VEDA.Prose {...props} />
     </DevseedUiThemeProvider>
   );
 }

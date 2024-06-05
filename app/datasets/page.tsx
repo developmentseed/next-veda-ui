@@ -1,8 +1,10 @@
+'use client';
 import { BlogPosts } from 'app/components/posts'
 // import {
 //   DevseedUiThemeProvider,
 //   createUITheme,
 // } from "@devseed-ui/theme-provider";
+import { useDataStore } from 'app/store/provider'
 
 const VEDA_OVERRIDE_THEME = {
   zIndices: {
@@ -62,10 +64,12 @@ const VEDA_OVERRIDE_THEME = {
 // }
 
 export default function Page() {
+  const { state: { datasets } } = useDataStore();
+
   return (
     <section>
       <h1 className="font-semibold text-2xl mb-8 tracking-tighter">Datasets</h1>
-      <BlogPosts postType="dataset" />
+      <BlogPosts postType="dataset" datasets={datasets}/>
     </section>
     // // <DevseedUiThemeProvider theme={createUITheme(VEDA_OVERRIDE_THEME)}>
     //   {/* <DataCatalog datasets={[]} /> */}

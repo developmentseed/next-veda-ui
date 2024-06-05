@@ -1,11 +1,17 @@
+import React from 'react';
 import Link from 'next/link'
 import Image from 'next/image'
 
-import { formatDate, getDatasets, getStories } from 'app/blog/utils'
+import { formatDate } from 'app/blog/utils/date'
 import { StoryData } from 'app/types/veda'
 
-export function BlogPosts({ postType}) {
-  let allBlogs = (postType === 'dataset')? getDatasets(): getStories();
+export function BlogPosts({ postType, datasets, stories}: {postType: string, datasets?: any[], stories?: any[]}) {
+  let allBlogs;
+  if (postType === 'dataset') {
+    allBlogs = datasets || [];
+  } else {
+    allBlogs = stories || [];
+  }
   
   const prefix = (postType === 'dataset')? 'datasets': 'stories'
   return (

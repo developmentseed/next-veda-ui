@@ -1,3 +1,4 @@
+import { getStories } from 'app/blog/utils/mdx';
 import { BlogPosts } from 'app/components/posts'
 // import {
 //   DevseedUiThemeProvider,
@@ -62,10 +63,11 @@ const VEDA_OVERRIDE_THEME = {
 // }
 
 export default function Page() {
+  const stories = getStories();
   return (
     <section>
       <h1 className="font-semibold text-2xl mb-8 tracking-tighter">Stories</h1>
-      <BlogPosts postType="story" />
+      <BlogPosts postType="story" stories={stories} />
     </section>
     // // <DevseedUiThemeProvider theme={createUITheme(VEDA_OVERRIDE_THEME)}>
     //   {/* <DataCatalog datasets={[]} /> */}
