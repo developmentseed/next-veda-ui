@@ -4,7 +4,6 @@ import { BlogPosts } from 'app/components/posts'
 //   DevseedUiThemeProvider,
 //   createUITheme,
 // } from "@devseed-ui/theme-provider";
-import { setDatasets } from 'app/store/provider';
 
 const VEDA_OVERRIDE_THEME = {
   zIndices: {
@@ -64,8 +63,6 @@ const VEDA_OVERRIDE_THEME = {
 // }
 
 export default function Page() {
-  const datasets = getDatasets();
-  setDatasets(datasets);
   return (
     <section>
       <h1 className="font-semibold text-2xl mb-8 tracking-tighter">Datasets</h1>

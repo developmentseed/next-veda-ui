@@ -6,6 +6,8 @@ import { Navbar } from './components/nav'
 import Footer from './components/footer'
 import { baseUrl } from './sitemap'
 import { PageMainContent } from "app/lib/veda-ui";
+import { setDatasets } from 'app/store/provider';
+import { getDatasets } from 'app/blog/utils';
 
 export const metadata: Metadata = {
   metadataBase: new URL(baseUrl),
@@ -42,6 +44,8 @@ export default function RootLayout({
 }: {
   children: React.ReactNode
 }) {
+  const datasets = getDatasets();
+  setDatasets(datasets);
   return (
     <html
       lang="en"
