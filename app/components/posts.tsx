@@ -3,9 +3,16 @@ import Image from 'next/image'
 
 import { formatDate, getDatasets, getStories } from 'app/blog/utils'
 import { StoryData } from 'app/types/veda'
+import { grabDatasets } from '../store/provider';
 
 export function BlogPosts({ postType}) {
-  let allBlogs = (postType === 'dataset')? getDatasets(): getStories();
+  // let allBlogs = (postType === 'dataset')? getDatasets(): getStories();
+  let allBlogs;
+  if (postType === 'dataset') {
+    allBlogs = grabDatasets();
+  } else {
+    allBlogs = getStories();
+  }
   
   const prefix = (postType === 'dataset')? 'datasets': 'stories'
   return (

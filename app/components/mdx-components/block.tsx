@@ -1,9 +1,9 @@
 'use client'
 
-import VEDA from "@developmentseed/veda-ui";
-// import { Block } from "@developmentseed/veda-ui"; // This returns undefined
+// import VEDA from "@developmentseed/veda-ui";
+import { Block, Caption, Figure, Prose } from "@developmentseed/veda-ui"; // This returns undefined
 // console.log(VEDA)
-// console.log(VEDA.Block)
+// console.log(Block)
 import {
   DevseedUiThemeProvider,
   createUITheme,
@@ -86,17 +86,18 @@ function EnhancedBlock(props) {
   
   return (
     <DevseedUiThemeProvider theme={createUITheme(VEDA_OVERRIDE_THEME)}>
-      <VEDA.Block {...props} />
+      {/* <Block {...props} /> */}
+      <Prose {...props} />
     </DevseedUiThemeProvider>
   );
 }
 
 
 // function EnhancedProse(props) {
-//   const Prose = VEDA.Prose
+//   const Prose = Prose
 //   return (
     
-//       <VEDA.Prose {...props} />
+//       <Prose {...props} />
     
 //   );
 // }
@@ -107,7 +108,7 @@ function EnhancedBlock(props) {
 function EnhancedCaption(props) {
   return (
     
-      <VEDA.Caption {...props} />
+      <Caption {...props} />
     
   );
 }
@@ -117,12 +118,11 @@ EnhancedCaption.displayName='Caption'
 function EnhancedFigure(props) {
   return (
     
-      <VEDA.Figure {...props} />
+      <Figure {...props} />
     
   );
 }
 
-const Prose = VEDA.Prose
 console.log(Prose)
 EnhancedFigure.displayName = 'Figure'
 
