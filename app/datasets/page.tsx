@@ -1,4 +1,7 @@
 import { BlogPosts } from 'app/components/posts'
+// import { DataProvider } from '../lib/veda-ui';
+// import { DataProvider } from '../lib/veda-ui';
+// import {Prose} from '../lib/veda-ui'
 // import {
 //   DevseedUiThemeProvider,
 //   createUITheme,
@@ -62,10 +65,14 @@ const VEDA_OVERRIDE_THEME = {
 // }
 
 export default function Page() {
+  // console.log(`UnicornDataProvider: `, DataProvider)
   return (
     <section>
       <h1 className="font-semibold text-2xl mb-8 tracking-tighter">Datasets</h1>
-      <BlogPosts postType="dataset" />
+      {/* <DataProvider> */}
+        <BlogPosts postType="dataset" />
+        {/* <Prose /> */}
+      {/* </DataProvider> */}
     </section>
     // // <DevseedUiThemeProvider theme={createUITheme(VEDA_OVERRIDE_THEME)}>
     //   {/* <DataCatalog datasets={[]} /> */}

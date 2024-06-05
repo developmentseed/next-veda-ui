@@ -1,14 +1,16 @@
 'use client'
 
-import VEDA from "@developmentseed/veda-ui";
-// import { Block } from "@developmentseed/veda-ui"; // This returns undefined
+import React, { Children } from 'react';
+// import { Block } from "../../lib/veda-ui";
+// import VEDA from "@developmentseed/veda-ui";
+// import { Block, Prose, Caption, Figure } from "@developmentseed/veda-ui"; // This returns undefined
+import { VEDA } from "../../lib/veda-ui";
 // console.log(VEDA)
-// console.log(VEDA.Block)
+// console.log(Block)
 import {
   DevseedUiThemeProvider,
   createUITheme,
 } from "@devseed-ui/theme-provider";
-import React, { Children } from 'react'
 
 export const VEDA_OVERRIDE_THEME = {
   zIndices: {
@@ -77,7 +79,7 @@ function EnhancedBlock(props) {
       return e.type?.displayName ?? 'undefined'
     }
   );
-
+  
   const childrenNames = childrenComponents.reduce(
     (acc, curr) => acc + curr,
     ''
@@ -86,17 +88,18 @@ function EnhancedBlock(props) {
   
   return (
     <DevseedUiThemeProvider theme={createUITheme(VEDA_OVERRIDE_THEME)}>
-      <VEDA.Block {...props} />
+      {/* <VEDA.Block {...props} /> */}
+      <VEDA.Prose {...props} />
     </DevseedUiThemeProvider>
   );
 }
 
 
 // function EnhancedProse(props) {
-//   const Prose = VEDA.Prose
+//   const Prose = Prose
 //   return (
     
-//       <VEDA.Prose {...props} />
+//       <Prose {...props} />
     
 //   );
 // }
@@ -122,7 +125,7 @@ function EnhancedFigure(props) {
   );
 }
 
-const Prose = VEDA.Prose
+const Prose = VEDA?.Prose
 console.log(Prose)
 EnhancedFigure.displayName = 'Figure'
 
