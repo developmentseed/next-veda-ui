@@ -64,7 +64,11 @@ const VEDA_OVERRIDE_THEME = {
 // }
 
 export default function Page() {
-  // @NOTE: Setting in RootLayout doesn't work. As direct children components from pages are not able to grab the datasets
+  /**
+   * @EXPERIMENT-NOTE: Setting in RootLayout doesn't work. 
+   * Possibly because there isn't a Provider wrapper with useContext that exposes the values...
+   */
+  
   const datasets = getDatasets(); 
   setDatasets(datasets);
   return (

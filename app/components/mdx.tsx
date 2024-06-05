@@ -4,6 +4,7 @@ import { MDXRemote } from 'next-mdx-remote/rsc'
 import { highlight } from 'sugar-high'
 
 import { EnhancedBlock, Prose, EnhancedCaption, EnhancedFigure} from './mdx-components/block'
+// import { grabDatasets } from '../store/provider';
 
 function Table({ data }) {
   let headers = data.headers.map((header, index) => (
@@ -84,6 +85,23 @@ let components = {
 }
 
 export function CustomMDX(props) {
+  // let datasets = grabDatasets()
+
+  // let components = {
+  //   h1: createHeading(1),
+  //   h2: createHeading(2),
+  //   h3: createHeading(3),
+  //   h4: createHeading(4),
+  //   h5: createHeading(5),
+  //   h6: createHeading(6),
+  //   code: Code,
+  //   Table,
+  //   Block: () => <EnhancedBlock content={}/>,
+  //   Prose: Prose,
+  //   Caption: EnhancedCaption,
+  //   Figure: EnhancedFigure
+  // }
+
   return (
     <MDXRemote
       {...props}

@@ -1,11 +1,16 @@
 import Link from 'next/link'
 import Image from 'next/image'
 
-import { formatDate, getDatasets, getStories } from 'app/blog/utils'
+import { formatDate, getStories } from 'app/blog/utils'
 import { StoryData } from 'app/types/veda'
 import { grabDatasets } from '../store/provider';
 
 export function BlogPosts({ postType}) {
+  /**
+   * @EXPERIMENT-NOTE: Can use server-only-context for datasets here because this is a direct child component of
+   * where datasets was initialized in "app/datasets/page"
+   */
+
   // let allBlogs = (postType === 'dataset')? getDatasets(): getStories();
   let allBlogs;
   if (postType === 'dataset') {
