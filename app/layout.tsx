@@ -5,8 +5,6 @@ import { GeistMono } from 'geist/font/mono'
 import { Navbar } from './components/nav'
 import Footer from './components/footer'
 import { baseUrl } from './sitemap'
-import { setDatasets } from 'app/store/provider';
-import { getDatasets } from 'app/blog/utils';
 
 export const metadata: Metadata = {
   metadataBase: new URL(baseUrl),
@@ -43,8 +41,6 @@ export default function RootLayout({
 }: {
   children: React.ReactNode
 }) {
-  const datasets = getDatasets();
-  setDatasets(datasets);
   return (
     <html
       lang="en"

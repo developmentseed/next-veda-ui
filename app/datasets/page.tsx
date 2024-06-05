@@ -1,5 +1,6 @@
 import { getDatasets } from 'app/blog/utils';
 import { BlogPosts } from 'app/components/posts'
+import { setDatasets } from 'app/store/provider';
 // import {
 //   DevseedUiThemeProvider,
 //   createUITheme,
@@ -63,6 +64,9 @@ const VEDA_OVERRIDE_THEME = {
 // }
 
 export default function Page() {
+  // @NOTE: Setting in RootLayout doesn't work. As direct children components from pages are not able to grab the datasets
+  const datasets = getDatasets(); 
+  setDatasets(datasets);
   return (
     <section>
       <h1 className="font-semibold text-2xl mb-8 tracking-tighter">Datasets</h1>
