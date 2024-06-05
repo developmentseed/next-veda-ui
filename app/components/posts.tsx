@@ -1,11 +1,15 @@
+'use client';
 import React from 'react';
 import Link from 'next/link'
 import Image from 'next/image'
 
 import { formatDate } from 'app/blog/utils/date'
 import { StoryData } from 'app/types/veda'
+import { useDataStore } from 'app/store/provider';
 
-export function BlogPosts({ postType, datasets, stories}: {postType: string, datasets?: any[], stories?: any[]}) {
+export function BlogPosts({ postType, stories}: {postType: string, stories?: any[]}) {
+  const { state: { datasets } } = useDataStore();
+  
   let allBlogs;
   if (postType === 'dataset') {
     allBlogs = datasets || [];
