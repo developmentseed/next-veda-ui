@@ -7,7 +7,7 @@ import { grabDatasets } from '../store/provider';
 
 export function BlogPosts({ postType}) {
   /**
-   * @EXPERIMENT-NOTE: Can use server-only-context for datasets here because this is a direct child component of
+   * @EXPERIMENT-NOTE: Can use server-only-context to grabDatasets here because this is a direct child component of
    * where datasets was initialized in "app/datasets/page"
    */
 

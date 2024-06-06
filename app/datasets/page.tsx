@@ -66,7 +66,8 @@ const VEDA_OVERRIDE_THEME = {
 export default function Page() {
   /**
    * @EXPERIMENT-NOTE: Setting in RootLayout doesn't work. 
-   * Possibly because there isn't a Provider wrapper with useContext that exposes the values...
+   * Possibly because there isn't a Provider wrapper with context that exposes the values...
+   * So looks like if we use the lib, we will have to do this for EVERY page route...
    */
   
   const datasets = getDatasets(); 

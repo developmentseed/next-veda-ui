@@ -4,6 +4,7 @@ import { MDXRemote } from 'next-mdx-remote/rsc'
 import { highlight } from 'sugar-high'
 
 import { EnhancedBlock, Prose, EnhancedCaption, EnhancedFigure} from './mdx-components/block'
+import { grabDatasets } from 'app/store/provider'
 // import { grabDatasets } from '../store/provider';
 
 function Table({ data }) {
@@ -69,38 +70,42 @@ function createHeading(level) {
   return Heading
 }
 
-let components = {
-  h1: createHeading(1),
-  h2: createHeading(2),
-  h3: createHeading(3),
-  h4: createHeading(4),
-  h5: createHeading(5),
-  h6: createHeading(6),
-  code: Code,
-  Table,
-  Block: EnhancedBlock,
-  Prose: Prose,
-  Caption: EnhancedCaption,
-  Figure: EnhancedFigure
-}
-
+// let components = {
+//   h1: createHeading(1),
+//   h2: createHeading(2),
+//   h3: createHeading(3),
+//   h4: createHeading(4),
+//   h5: createHeading(5),
+//   h6: createHeading(6),
+//   code: Code,
+//   Table,
+//   Block: EnhancedBlock,
+//
 export function CustomMDX(props) {
-  // let datasets = grabDatasets()
+  /**
+   * @EXPERIMENT-NOTE: 
+   * We could do something like this for BlockMap
+   * Can use server-only-context to grabDatasets here because this is a direct child component of
+   * where datasets was initialized in "app/datasets/[slug]/page"
+   */
+  const datasets = grabDatasets();
 
-  // let components = {
-  //   h1: createHeading(1),
-  //   h2: createHeading(2),
-  //   h3: createHeading(3),
-  //   h4: createHeading(4),
-  //   h5: createHeading(5),
-  //   h6: createHeading(6),
-  //   code: Code,
-  //   Table,
-  //   Block: () => <EnhancedBlock content={}/>,
-  //   Prose: Prose,
-  //   Caption: EnhancedCaption,
-  //   Figure: EnhancedFigure
-  // }
+  let components = {
+    h1: createHeading(1),
+    h2: createHeading(2),
+    h3: createHeading(3),
+    h4: createHeading(4),
+    h5: createHeading(5),
+    h6: createHeading(6),
+    code: Code,
+    Table,
+    // Block: EnhancedBlock,
+    Block: (props) => (<EnhancedBlock {...props} datasets={datasets}/>),
+    Prose: Prose,
+    Caption: EnhancedCaption,
+    Figure: EnhancedFigure
+    // BlockMap: BlockMap // @EXPERIMENT-NOTE: Currently depends on datasets from veda virtual modules and takes in datasetId as a prop
+  }
 
   return (
     <MDXRemote

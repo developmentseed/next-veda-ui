@@ -63,7 +63,6 @@ export const VEDA_OVERRIDE_THEME = {
 };
 
 function EnhancedBlock(props) {
-  
   const childrenAsArray = Children.toArray(props.children);
   console.log('children array')
   console.log(childrenAsArray)
@@ -83,11 +82,13 @@ function EnhancedBlock(props) {
     ''
   );
   console.log(childrenNames)
-  
+  /**
+   * @EXPERIMENT-NOTE: datasets would be a part of props now and would be able to be passed down to veda-ui component
+   */
   return (
     <DevseedUiThemeProvider theme={createUITheme(VEDA_OVERRIDE_THEME)}>
       {/* <Block {...props} /> */}
-      <VEDA.Prose {...props} />
+      <VEDA.Prose {...props} /> 
     </DevseedUiThemeProvider>
   );
 }
