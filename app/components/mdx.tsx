@@ -1,4 +1,3 @@
-
 import React from 'react'
 import { MDXRemote } from 'next-mdx-remote/rsc'
 import { highlight } from 'sugar-high'
@@ -80,7 +79,8 @@ let components = {
   Block: EnhancedBlock,
   Prose: Prose,
   Caption: EnhancedCaption,
-  Figure: EnhancedFigure
+  Figure: EnhancedFigure,
+  // BlockMap: BlockMap, // @EXPERIMENT-NOTE: Currently depends on datasets from veda virtual modules and takes in datasetId as a prop
 }
 
 export function CustomMDX(props) {

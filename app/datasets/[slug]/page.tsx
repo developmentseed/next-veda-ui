@@ -3,6 +3,7 @@ import { CustomMDX } from 'app/components/mdx'
 import { getBlogPosts, getDatasets } from 'app/blog/utils/mdx'
 import { formatDate } from 'app/blog/utils/date'
 import { baseUrl } from 'app/sitemap'
+// import { useDataStore } from 'app/store/provider';
 
 function generateStaticParams() {
   let posts = getDatasets()
@@ -55,10 +56,19 @@ export function generateMetadata({ params }) {
 export default function Blog({ params }) {
   let post = getDatasets().find((post) => post.slug === params.slug)
   console.log(post);
+
+  /**
+   * @EXPERIMENT-NOTE: Cannot useContext here because it requires we declare the `use client` directive but
+   * MDXRemote, which must be rendered server side, is not playing well here possibly because it would be a direct child 
+   * of the client component?
+   */
+  // const { state: { datasets } } = useDataStore(); 
+  // let post = datasets?.find((post) => post.slug === params.slug)
+
   if (!post) {
     notFound()
   }
-
+  
   return (
     <section>
       <script

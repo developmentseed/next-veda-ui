@@ -1,6 +1,7 @@
 'use client'
 
 import VEDA from "@developmentseed/veda-ui";
+import { useDataStore } from 'app/store/provider';
 // import { Block } from "@developmentseed/veda-ui"; // This returns undefined
 // console.log(VEDA)
 // console.log(VEDA.Block)
@@ -63,7 +64,13 @@ export const VEDA_OVERRIDE_THEME = {
 };
 
 function EnhancedBlock(props) {
-  
+  /**
+   * @EXPERIMENT-NOTE: 
+   * We could do something like this for BlockMap
+   * We can useContext here since this is alread client side to pass in datasets to mdx components.
+   * This will require us to useContext in every wrapper function like this one though. 
+   */
+  const { state: { datasets } } = useDataStore();
   const childrenAsArray = Children.toArray(props.children);
   console.log('children array')
   console.log(childrenAsArray)
@@ -83,11 +90,11 @@ function EnhancedBlock(props) {
     ''
   );
   console.log(childrenNames)
-  
+
   return (
     <DevseedUiThemeProvider theme={createUITheme(VEDA_OVERRIDE_THEME)}>
       {/* <VEDA.Block {...props} /> */}
-      <VEDA.Prose {...props} />
+      <VEDA.Prose {...props} {...datasets}/>
     </DevseedUiThemeProvider>
   );
 }
