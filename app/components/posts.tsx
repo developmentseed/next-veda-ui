@@ -8,7 +8,7 @@ import { StoryData } from 'app/types/veda'
 import { useDataStore } from 'app/store/provider';
 
 export function BlogPosts({ postType, stories}: {postType: string, stories?: any[]}) {
-  const { state: { datasets } } = useDataStore();
+  const { state: { datasets } } = useDataStore(); // @EXPERIMENT-NOTE: Fine to use here
   
   let allBlogs;
   if (postType === 'dataset') {
