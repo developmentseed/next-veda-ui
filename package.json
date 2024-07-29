@@ -21,7 +21,7 @@
     "postcss": "^8.4.35",
     "react": "18.2.0",
     "react-dom": "18.2.0",
-    "styled-components": "^6.1.11",
+    "styled-components": "^5.3.3",
     "sugar-high": "^0.6.0",
     "tailwindcss": "4.0.0-alpha.13",
     "typescript": "5.3.3",
