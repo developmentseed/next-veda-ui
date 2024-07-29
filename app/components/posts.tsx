@@ -1,21 +1,13 @@
 'use client';
 import Link from 'next/link'
 import Image from 'next/image'
-import { useDataStore } from 'app/store/providers/data';
 
-export function BlogPosts({ postType, stories}: {postType: string, stories?: any[]}) {
-  const { datasets } = useDataStore();
-  let allBlogs;
-  if (postType === 'dataset' && datasets) {
-    allBlogs = datasets
-  } else {
-    allBlogs = stories || [];
-  }
-  
+export function BlogPosts({ postType, posts = []}: {postType: string, popsts?: any[]}) {
+
   const prefix = (postType === 'dataset')? 'datasets': 'stories'
   return (
     <div>
-      {allBlogs
+      {posts
         .map((post) => (
           <Link
             key={post.slug}
