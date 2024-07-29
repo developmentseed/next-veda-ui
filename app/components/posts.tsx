@@ -2,7 +2,7 @@
 import Link from 'next/link'
 import Image from 'next/image'
 
-export function BlogPosts({ postType, posts = []}: {postType: string, popsts?: any[]}) {
+export function BlogPosts({ postType, posts = []}: {postType: string, posts?: any[]}) {
 
   const prefix = (postType === 'dataset')? 'datasets': 'stories'
   return (

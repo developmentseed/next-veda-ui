@@ -1,4 +1,3 @@
-
 import React from 'react'
 import { MDXRemote } from 'next-mdx-remote/rsc'
 import { highlight } from 'sugar-high'
@@ -11,6 +10,7 @@ import {
   EnhancedMapBlock,
   CompareImage,
 } from './mdx-components/block'
+import { CoreVedaProvidersWrapper } from 'app/store/providers'
 
 function Table({ data }) {
   let headers = data.headers.map((header, index) => (
@@ -95,9 +95,11 @@ let components = {
 
 export function CustomMDX(props) {
   return (
-    <MDXRemote
-      {...props}
-      components={{ ...components, ...(props.components || {}) }}
-    />
+    <CoreVedaProvidersWrapper>
+      <MDXRemote
+        {...props}
+        components={{ ...components, ...(props.components || {}) }}
+      />
+    </CoreVedaProvidersWrapper>
   )
 }

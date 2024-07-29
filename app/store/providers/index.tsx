@@ -8,8 +8,9 @@ export function CoreVedaProvidersWrapper({
 }: {
   children: JSX.Element | ReactNode
 }) {
+  const datasets = getDatasets();
   return (
-    <DataProvider initialDatasets={getDatasets()}>
+    <DataProvider initialDatasets={datasets}>
       <DevseedUIThemeProvider>
         {children}
       </DevseedUIThemeProvider>
