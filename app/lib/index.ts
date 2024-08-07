@@ -1,6 +1,7 @@
 'use client';
-import { PageHero } from '@developmentseed/veda-ui';
+import { CatalogView, PageHero } from '@developmentseed/veda-ui';
 
 export {
+  CatalogView,
   PageHero
 }
