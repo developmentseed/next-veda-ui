@@ -7,6 +7,9 @@ const navItems = {
   '/datasets': {
     name: 'datasets',
   },
+  '/exploration': {
+    name: 'Exploration',
+  },
   '/stories': {
     name: 'stories',
   }
