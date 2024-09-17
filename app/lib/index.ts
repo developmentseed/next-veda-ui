@@ -1,8 +1,11 @@
 'use client';
-import { CatalogView, PageHero, useFiltersWithQS } from '@developmentseed/veda-ui';
+import { CatalogView, PageHero, useFiltersWithQS, ExplorationAndAnalysis, DatasetSelectorModal, timelineDatasetsAtom } from '@developmentseed/veda-ui';
 
 export {
   CatalogView,
   PageHero,
-  useFiltersWithQS
+  useFiltersWithQS,
+  ExplorationAndAnalysis,
+  DatasetSelectorModal,
+  timelineDatasetsAtom,
 }
