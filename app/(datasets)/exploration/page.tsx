@@ -6,7 +6,7 @@ import { PageHero } from 'app/lib';
 export default function Page() {
   const datasets: any[] = getDatasets();
 
-  // @TODO-SANDRA: Investigate why we need to 100vh...
+  // @TODO: Investigate why we need to set 100vh
   return (
     <section style={{height: "100vh"}}> 
       <h1 className="font-semibold text-2xl mb-8 tracking-tighter">Datasets</h1>
