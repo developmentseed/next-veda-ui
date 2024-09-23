@@ -3,7 +3,7 @@ import path from 'path'
 import matter from 'gray-matter'
 import markdownit from 'markdown-it';
 import { DatasetLayer, StoryData } from 'app/types/veda'
-
+const { kebabCase } = require('lodash');
 const md = markdownit();
 
 type Metadata = {
@@ -11,6 +11,32 @@ type Metadata = {
   publishedAt: string
   summary: string
   image?: string
+}
+
+function processTaxonomies(o) {
+  return {
+      ...o,
+      taxonomy: (o.taxonomy || [])
+        .map((tx) => {
+          if (!tx.name || !tx.values?.length) return null;
+
+          // Guard against multiple values for Grade and Uncertainty.
+          if (
+            ['Grade', 'Uncertainty'].includes(tx.name) &&
+            tx.values.length > 1
+          ) {
+            throw new Error(
+              `Taxonomy ${tx.name} can only have one value. Check dataset ${o.id}`
+            );
+          }
+
+          return {
+            name: tx.name,
+            values: tx.values.map((v) => ({ id: kebabCase(v), name: v }))
+          };
+        })
+        .filter(Boolean)
+    }
 }
 
 export function resolveConfigFunctions<T>(
@@ -132,9 +158,9 @@ function getMDXData(dir) {
     let { content, data } = readMDXFile(path.join(dir, file))
     const parsedData = parseAttributes(data)
     let slug = path.basename(file, path.extname(file))
-
+    const parseDataWithTaxonomy = processTaxonomies(parsedData);
     return {
-      metadata: parsedData as (DatasetLayer | StoryData),
+      metadata: parseDataWithTaxonomy as (DatasetLayer | StoryData),
       slug,
       content
     }
@@ -158,6 +184,10 @@ function getMDXMetaData(dir) {
 
 export function getDatasetsMetadata() {
   return getMDXMetaData(path.join(process.cwd(), 'app', 'blog', 'datasets'));
+}
+
+export function getStoriesMetadata() {
+  return getMDXMetaData(path.join(process.cwd(), 'app', 'blog', 'stories'));
 }
 
 export function getDatasets() {
