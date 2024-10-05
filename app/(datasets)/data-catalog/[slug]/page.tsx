@@ -13,7 +13,7 @@ function generateStaticParams() {
   }));
 }
 
-export function generateMetadata({ params }: { params: any }) {
+export function generateMetadata({ params }) {
   const post = getDatasets().find((post) => post.slug === params.slug);
 
   if (!post) {

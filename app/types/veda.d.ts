@@ -1,12 +1,9 @@
 import * as dateFns from 'date-fns';
-import mapboxgl from 'mapbox-gl';
-import { MDXModule } from 'mdx/types';
-import { DefaultTheme } from 'styled-components';
 
 // ///////////////////////////////////////////////////////////////////////////
 //  Datasets                                                                //
 // ///////////////////////////////////////////////////////////////////////////
-type DatasetLayerType = 'raster' | 'vector' | 'zarr'| 'cmr';
+type DatasetLayerType = 'raster' | 'vector' | 'zarr' | 'cmr';
 
 interface DatasetLayerCommonProps {
   zoomExtent?: number[];
@@ -38,13 +35,13 @@ export interface DatasetLayerCompareInternal
 export enum TimeDensity {
   YEAR = 'year',
   MONTH = 'month',
-  DAY = 'day'
+  DAY = 'day',
 }
 export interface LayerInfo {
-source: string;
-spatialExtent: string;
-temporalResolution: string;
-unit: string;
+  source: string;
+  spatialExtent: string;
+  temporalResolution: string;
+  unit: string;
 }
 export interface DatasetLayer extends DatasetLayerCommonProps {
   id: string;
@@ -68,7 +65,7 @@ export interface DatasetLayer extends DatasetLayerCommonProps {
   assetUrlReplacements?: {
     from: string;
     to: string;
-  },
+  };
   time_density?: TimeDensity;
   info?: LayerInfo;
 }
@@ -204,4 +201,3 @@ export interface Media {
     url: string;
   };
 }
-

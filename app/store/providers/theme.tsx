@@ -1,9 +1,7 @@
 'use client';
 import React, { ReactNode } from 'react';
-import {
-  createUITheme,
-} from "@devseed-ui/theme-provider";
-import { DevseedUiThemeProvider, PageMainContent } from "@developmentseed/veda-ui";
+import { createUITheme } from '@devseed-ui/theme-provider';
+import { DevseedUiThemeProvider, PageMainContent } from '../../lib';
 
 const VEDA_OVERRIDE_THEME = {
   zIndices: {
@@ -19,26 +17,26 @@ const VEDA_OVERRIDE_THEME = {
     tooltip: 1800,
   },
   color: {
-    base: "#2c3e50",
-    primary: "#2276ac",
+    base: '#2c3e50',
+    primary: '#2276ac',
     link: '#FF0000', // To check if the theme is working
-    danger: "#FC3D21",
-    infographicA: "#fcab10",
-    infographicB: "#f4442e",
-    infographicC: "#b62b6e",
-    infographicD: "#2ca58d",
-    infographicE: "#2276ac",
+    danger: '#FC3D21',
+    infographicA: '#fcab10',
+    infographicB: '#f4442e',
+    infographicC: '#b62b6e',
+    infographicD: '#2ca58d',
+    infographicE: '#2276ac',
   },
   type: {
     base: {
-      leadSize: "1.25rem",
-      extrabold: "800",
+      leadSize: '1.25rem',
+      extrabold: '800',
       // Increments to the type.base.size for each media breakpoint.
       sizeIncrement: {
-        small: "0rem",
-        medium: "0rem",
-        large: "0.25rem",
-        xlarge: "0.25rem",
+        small: '0rem',
+        medium: '0rem',
+        large: '0.25rem',
+        xlarge: '0.25rem',
       },
     },
     heading: {
@@ -46,8 +44,8 @@ const VEDA_OVERRIDE_THEME = {
     },
   },
   layout: {
-    min: "384px",
-    max: "1440px",
+    min: '384px',
+    max: '1440px',
     glspMultiplier: {
       xsmall: 1,
       small: 1,
@@ -58,12 +56,14 @@ const VEDA_OVERRIDE_THEME = {
   },
 };
 
-function DevseedUIThemeProvider({children}: {children: JSX.Element | ReactNode}) {
+function DevseedUIThemeProvider({
+  children,
+}: {
+  children: JSX.Element | ReactNode;
+}) {
   return (
     <DevseedUiThemeProvider theme={createUITheme(VEDA_OVERRIDE_THEME)}>
-      <PageMainContent>
-        {children}
-      </PageMainContent>
+      <PageMainContent>{children}</PageMainContent>
     </DevseedUiThemeProvider>
   );
 }

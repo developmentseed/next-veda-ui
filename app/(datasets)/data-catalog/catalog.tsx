@@ -1,5 +1,4 @@
 'use client';
-
 import React from 'react';
 import { CatalogView, useFiltersWithQS } from '../../lib';
 import { useRouter } from 'next/navigation';

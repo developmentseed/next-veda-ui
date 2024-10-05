@@ -1,30 +1,33 @@
-import { notFound } from 'next/navigation'
-import { CustomMDX } from 'app/components/mdx'
+import React from 'react';
+import { notFound } from 'next/navigation';
+import { CustomMDX } from 'app/components/mdx';
 import { formatDate } from 'app/blog/utils/date';
 import { getStories } from 'app/blog/utils/mdx';
-import { baseUrl } from 'app/sitemap'
+import { baseUrl } from 'app/sitemap';
 
 async function generateStaticParams() {
-  let posts = getStories()
+  const posts = getStories();
 
   return posts.map((post) => ({
     slug: post.slug,
-  }))
+  }));
 }
 
-function generateMetadata({ params }) {
-  let post = getStories().find((post) => post.slug === params.slug)
+function generateMetadata({ params }: { params: any }) {
+  const post = getStories().find((post) => post.slug === params.slug);
   if (!post) {
-    return
+    return;
   }
 
-  let {
+  const {
     title,
     publishedAt: publishedTime,
     summary: description,
     image,
-  } = post.metadata
-  let ogImage = image ? image : `${baseUrl}/og?title=${encodeURIComponent(title)}`
+  } = post.metadata;
+  const ogImage = image
+    ? image
+    : `${baseUrl}/og?title=${encodeURIComponent(title)}`;
 
   return {
     title,
@@ -47,20 +50,20 @@ function generateMetadata({ params }) {
       description,
       images: [ogImage],
     },
-  }
+  };
 }
 
-export default function Blog({ params }) {
-  let post = getStories().find((post) => post.slug === params.slug)
+export default function Blog({ params }: { params: any }) {
+  const post = getStories().find((post) => post.slug === params.slug);
 
   if (!post) {
-    notFound()
+    notFound();
   }
 
   return (
     <section>
       <script
-        type="application/ld+json"
+        type='application/ld+json'
         suppressHydrationWarning
         dangerouslySetInnerHTML={{
           __html: JSON.stringify({
@@ -81,17 +84,17 @@ export default function Blog({ params }) {
           }),
         }}
       />
-      <h1 className="title font-semibold text-2xl tracking-tighter">
+      <h1 className='title font-semibold text-2xl tracking-tighter'>
         {post.metadata.title}
       </h1>
-      <div className="flex justify-between items-center mt-2 mb-8 text-sm">
-        <p className="text-sm text-neutral-600 dark:text-neutral-400">
+      <div className='flex justify-between items-center mt-2 mb-8 text-sm'>
+        <p className='text-sm text-neutral-600 dark:text-neutral-400'>
           {formatDate(post.metadata.publishedAt)}
         </p>
       </div>
-      <article className="prose">
+      <article className='prose'>
         <CustomMDX source={post.content} />
       </article>
     </section>
-  )
+  );
 }

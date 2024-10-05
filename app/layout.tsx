@@ -1,11 +1,15 @@
-import './global.css'
+import './global.css';
+import React from 'react';
 import type { Metadata } from 'next';
 import { Navbar } from './components/nav';
 import Footer from './components/footer';
 import { baseUrl } from './sitemap';
 import dynamic from 'next/dynamic';
 
-const DevSeedUIThemeProvider = dynamic(() => import('app/store/providers/theme'), {ssr: false})
+const DevSeedUIThemeProvider = dynamic(
+  () => import('app/store/providers/theme'),
+  { ssr: false },
+);
 
 export const metadata: Metadata = {
   metadataBase: new URL(baseUrl),
@@ -33,26 +37,24 @@ export const metadata: Metadata = {
       'max-snippet': -1,
     },
   },
-}
+};
 
 export default function RootLayout({
   children,
 }: {
-  children: React.ReactNode
+  children: React.ReactNode;
 }) {
   return (
-    <html
-      lang="en"
-    >
+    <html lang='en'>
       <body>
         <main>
           <DevSeedUIThemeProvider>
             <Navbar />
-              {children}
+            {children}
             <Footer />
           </DevSeedUIThemeProvider>
         </main>
       </body>
     </html>
-  )
+  );
 }

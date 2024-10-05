@@ -1,30 +1,14 @@
-import fs from 'fs'
-import path from 'path'
-import matter from 'gray-matter'
+import fs from 'fs';
+import path from 'path';
+import matter from 'gray-matter';
 import markdownit from 'markdown-it';
-import { DatasetLayer, StoryData } from 'app/types/veda'
+import { DatasetLayer, StoryData } from 'app/types/veda';
 
 const md = markdownit();
 
-type Metadata = {
-  title: string
-  publishedAt: string
-  summary: string
-  image?: string
-}
-
-export function resolveConfigFunctions<T>(
-  datum,
-  bag
-);
-export function resolveConfigFunctions<T extends any[]>(
-  datum,
-  bag
-);
-export function resolveConfigFunctions(
-  datum,
-  bag
-): any {
+export function resolveConfigFunctions<T>(datum, bag);
+export function resolveConfigFunctions<T extends any[]>(datum, bag);
+export function resolveConfigFunctions(datum, bag): any {
   if (Array.isArray(datum)) {
     return datum.map((v) => resolveConfigFunctions(v, bag));
   }
@@ -43,12 +27,12 @@ export function resolveConfigFunctions(
       return datum(bag);
     } catch (error) {
       /* eslint-disable-next-line no-console */
-      // console.error(
-      //   'Failed to resolve function %s(%o) with error %s',
-      //   datum.name,
-      //   bag,
-      //   error.message
-      // );
+      console.error(
+        'Failed to resolve function %s(%o) with error %s',
+        datum.name,
+        bag,
+        error.message,
+      );
       return null;
     }
   }
@@ -56,105 +40,80 @@ export function resolveConfigFunctions(
   return datum;
 }
 
-
-
 function parseAttributes(obj) {
   const convert = (obj) => {
-    return Object.keys(obj).reduce((acc, key) => {
-      if (typeof obj[key] === 'object' && obj[key] !== null) {     
-        acc[key] = convert(obj[key]);
-      } else if (typeof obj[key] === 'string') {
+    return Object.keys(obj).reduce(
+      (acc, key) => {
+        if (typeof obj[key] === 'object' && obj[key] !== null) {
+          acc[key] = convert(obj[key]);
+        } else if (typeof obj[key] === 'string') {
+          if (obj[key].includes('::markdown')) {
+            const v = obj[key];
+            const p = v.replace(/^::markdown ?/, '');
+            // Conver the string to HTML
+            const parsedVal = md.render(p);
+            acc[key] = parsedVal.replaceAll(/(\r\n|\n|\r)/gm, '');
+            return acc;
+          }
 
-        if (obj[key].includes('::markdown')) {
-          const v = obj[key]
-          const p = v.replace(/^::markdown ?/, '');
-          // Conver the string to HTML
-          const parsedVal = md.render(p);
-          acc[key] = parsedVal.replaceAll(/(\r\n|\n|\r)/gm, '');
-          return acc
-        }
-        
-        if (obj[key].includes('::js')) {
-          const v = obj[key]
-          const p = v.replace(/^::js ?/, '')
-          .replaceAll('\\n', '\n');
-          acc[key] = p
-          return acc
+          if (obj[key].includes('::js')) {
+            const v = obj[key];
+            const p = v.replace(/^::js ?/, '').replaceAll('\\n', '\n');
+            acc[key] = p;
+            return acc;
+          } else {
+            acc[key] = obj[key];
+          }
         } else {
           acc[key] = obj[key];
         }
-      } else {
-        acc[key] = obj[key];
-      }
-      return acc;
-    }, Array.isArray(obj) ? [] : {});
+        return acc;
+      },
+      Array.isArray(obj) ? [] : {},
+    );
   };
 
   return convert(obj);
 }
 
-function parseFrontmatter(fileContent: string) {
-  let frontmatterRegex = /---\s*([\s\S]*?)\s*---/
-  let match = frontmatterRegex.exec(fileContent)
-  let frontMatterBlock = match![1]
-  let content = fileContent.replace(frontmatterRegex, '').trim()
-  let frontMatterLines = frontMatterBlock.trim().split('\n')
-  let metadata: Partial<Metadata> = {}
-
-  frontMatterLines.forEach((line) => {
-    let [key, ...valueArr] = line.split(': ')
-    let value = valueArr.join(': ').trim()
-    value = value.replace(/^['"](.*)['"]$/, '$1') // Remove quotes
-    metadata[key.trim() as keyof Metadata] = value
-  })
-
-  return { metadata: metadata as Metadata, content }
-}
-
 function getMDXFiles(dir) {
-  return fs.readdirSync(dir).filter((file) => path.extname(file) === '.mdx')
+  return fs.readdirSync(dir).filter((file) => path.extname(file) === '.mdx');
 }
-
-// function readMDXFile(filePath) {
-//   let rawContent = fs.readFileSync(filePath, 'utf-8')
-//   return parseFrontmatter(rawContent)
-// }
 
 function readMDXFile(filePath) {
-  let rawContent = fs.readFileSync(filePath, 'utf-8')
-  let parsedData = matter(rawContent);
-  return parsedData
+  const rawContent = fs.readFileSync(filePath, 'utf-8');
+  const parsedData = matter(rawContent);
+  return parsedData;
 }
 
 function getMDXData(dir) {
-  let mdxFiles = getMDXFiles(dir)
+  const mdxFiles = getMDXFiles(dir);
   return mdxFiles.map((file) => {
-    let { content, data } = readMDXFile(path.join(dir, file))
-    const parsedData = parseAttributes(data)
-    let slug = path.basename(file, path.extname(file))
+    const { content, data } = readMDXFile(path.join(dir, file));
+    const parsedData = parseAttributes(data);
+    const slug = path.basename(file, path.extname(file));
 
     return {
-      metadata: parsedData as (DatasetLayer | StoryData),
+      metadata: parsedData as DatasetLayer | StoryData,
       slug,
-      content
-    }
-  })
+      content,
+    };
+  });
 }
 
 function getMDXMetaData(dir) {
-  let mdxFiles = getMDXFiles(dir)
+  const mdxFiles = getMDXFiles(dir);
   return mdxFiles.map((file) => {
-    let { data } = readMDXFile(path.join(dir, file))
-    const parsedData = parseAttributes(data)
-    let slug = path.basename(file, path.extname(file))
+    const { data } = readMDXFile(path.join(dir, file));
+    const parsedData = parseAttributes(data);
+    const slug = path.basename(file, path.extname(file));
 
     return {
-      metadata: parsedData as (DatasetLayer | StoryData),
-      slug
-    }
-  })
+      metadata: parsedData as DatasetLayer | StoryData,
+      slug,
+    };
+  });
 }
-
 
 export function getDatasetsMetadata() {
   return getMDXMetaData(path.join(process.cwd(), 'app', 'blog', 'datasets'));
@@ -165,9 +124,9 @@ export function getDatasets() {
 }
 
 export function getStories() {
-  return getMDXData(path.join(process.cwd(), 'app', 'blog', 'stories'))
+  return getMDXData(path.join(process.cwd(), 'app', 'blog', 'stories'));
 }
 
 export function getBlogPosts() {
-  return getMDXData(path.join(process.cwd(), 'app', 'blog', 'datasets'))
+  return getMDXData(path.join(process.cwd(), 'app', 'blog', 'datasets'));
 }
