@@ -16,6 +16,8 @@ import {
   NavItem,
   InternalNavLink,
   NavItemType,
+  PageHeader,
+  LogoContainer
 } from '@developmentseed/veda-ui';
 
 /**
@@ -33,6 +35,8 @@ export {
   CatalogView,
   PageHero,
   PageMainContent,
+  PageHeader,
+  LogoContainer,
 
   // MDX Components
   Block,
