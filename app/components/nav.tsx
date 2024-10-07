@@ -1,18 +1,31 @@
 import Link from 'next/link'
+import { PageHeader, Logo } from 'app/lib'
 
-const navItems = {
-  '/': {
-    name: 'home',
+const navItems = [ // @TODO: This should use the NavLinkType from veda-ui...
+  {
+    title: 'home',
+    to: '/',
+    type: 'internalLink'
   },
-  '/datasets': {
-    name: 'datasets',
+  {
+    title: 'datasets',
+    to: '/datasets',
+    type: 'internalLink'
   },
-  '/stories': {
-    name: 'stories',
+  {
+    title: 'stories',
+    to: '/stories',
+    type: 'internalLink'
   }
-}
+]
+
 
 export function Navbar() {
+  const linkProps = {
+    LinkElement: Link,
+    pathAttributeKeyName: 'href'
+  }
+
   return (
     <aside className="-ml-[8px] mb-16 tracking-tight">
       <div className="lg:sticky lg:top-20">
@@ -21,17 +34,7 @@ export function Navbar() {
           id="nav"
         >
           <div className="flex flex-row space-x-0 pr-10">
-            {Object.entries(navItems).map(([path, { name }]) => {
-              return (
-                <Link
-                  key={path}
-                  href={path}
-                  className="transition-all hover:text-neutral-800 dark:hover:text-neutral-200 flex align-middle relative py-1 px-2 m-1"
-                >
-                  {name}
-                </Link>
-              )
-            })}
+          <PageHeader mainNavItems={navItems} subNavItems={[]} logo={<Logo linkProperties={linkProps} />} linkProperties={linkProps} />
           </div>
         </nav>
       </div>
