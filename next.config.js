@@ -6,4 +6,12 @@ module.exports = {
     // !! WARN !!
     ignoreBuildErrors: true,
   },
+  async rewrites() {
+    return [
+      {
+        source: '/public/:path*',
+        destination: '/:path*',
+      },
+    ];
+  },
 }
