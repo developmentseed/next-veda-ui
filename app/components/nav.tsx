@@ -1,14 +1,15 @@
 import React from 'react';
 import Link from 'next/link';
+import { NavItem } from '@lib';
 
-interface NavItem {
-  // @TODO: To be replaced with exposed NavItem type from veda-ui
-  path: string;
-  title: string;
-  subItems?: NavItem[];
-}
+// interface NavItem {
+//   // @TODO: To be replaced with exposed NavItem type from veda-ui
+//   path: string;
+//   title: string;
+//   subItems?: NavItem[];
+// }
 
-const navItems: NavItem[] = [
+const navItems: NavItem[]  = [
   {
     path: '/',
     title: 'Home',

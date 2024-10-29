@@ -13,6 +13,8 @@ import {
   Image,
   MapBlock,
   CompareImage,
+  NavItem,
+  InternalNavLink
 } from '@developmentseed/veda-ui';
 
 /**
@@ -42,4 +44,8 @@ export {
 
   // Hooks
   useFiltersWithQS,
+
+  // Types
+  NavItem,
+  InternalNavLink
 };
