@@ -148,3 +148,8 @@ table {
 .title {
   text-wrap: balance;
 }
+
+.hug-reset-container {
+  display:grid;
+  grid-column: 1 / -1;
+}
