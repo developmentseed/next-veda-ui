@@ -10,7 +10,7 @@ export default function NasaLogo() {
         fillRule: 'evenodd',
         clipRule: 'evenodd',
         strokeLinejoin: 'round',
-        strokeMiterlimit: 2
+        strokeMiterlimit: 2,
       }}
     >
       <title>NASA</title>

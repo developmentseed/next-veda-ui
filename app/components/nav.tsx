@@ -1,3 +1,4 @@
+import React from 'react';
 import Link from 'next/link';
 import { PageHeader, LogoContainer } from '@lib';
 import NasaLogo from '../../public/images/nasa-logo';
@@ -7,48 +8,53 @@ const navItems: NavItem[]  = [
   {
     title: 'Home',
     to: '/',
-    type: NavItemType.INTERNAL_LINK
+    type: 'internalLink',
   },
   {
-    title: 'Data Catalog',
-    to: '/data-catalog',
-    type: NavItemType.INTERNAL_LINK
+    title: 'datasets',
+    to: '/datasets',
+    type: 'internalLink',
   },
   {
     title: 'Stories',
     to: '/stories',
-    type: NavItemType.INTERNAL_LINK
+    type: 'internalLink',
   },
 ];
 
 export function Navbar() {
   const linkProps = {
     LinkElement: Link,
-    pathAttributeKeyName: 'href'
-  }
+    pathAttributeKeyName: 'href',
+  };
 
   const Logo: JSX.Element = (
-    <LogoContainer 
+    <LogoContainer
       linkProperties={linkProps}
       logo={<NasaLogo />}
-      title="Earthdata"
-      subTitle="veda dashboard"
-      version="1.0.0"
+      title='Earthdata'
+      subTitle='veda dashboard'
+      version='1.0.0'
     />
-  )
+  );
 
   return (
-    <aside className="-ml-[8px] mb-16 tracking-tight">
-      <div className="lg:sticky lg:top-20">
+    <aside className='-ml-[8px] mb-16 tracking-tight'>
+      <div className='lg:sticky lg:top-20'>
         <nav
-          className="flex flex-row items-start relative px-0 pb-0 fade md:overflow-auto scroll-pr-6 md:relative"
-          id="nav"
+          className='flex flex-row items-start relative px-0 pb-0 fade md:overflow-auto scroll-pr-6 md:relative'
+          id='nav'
         >
-          <div className="flex flex-row space-x-0 pr-10">
-          <PageHeader mainNavItems={navItems} subNavItems={[]} logo={Logo} linkProperties={linkProps} />
+          <div className='flex flex-row space-x-0 pr-10'>
+            <PageHeader
+              mainNavItems={navItems}
+              subNavItems={[]}
+              logo={Logo}
+              linkProperties={linkProps}
+            />
           </div>
         </nav>
       </div>
     </aside>
-  )
+  );
 }
