@@ -6,7 +6,7 @@
     "start": "next start"
   },
   "dependencies": {
-    "@developmentseed/veda-ui": "v5.7.0-alpha.1",
+    "@developmentseed/veda-ui": "v5.8.0-alpha.ea",
     "@devseed-ui/theme-provider": "^4.1.0",
     "@tailwindcss/postcss": "4.0.0-alpha.13",
     "@types/node": "20.11.17",
