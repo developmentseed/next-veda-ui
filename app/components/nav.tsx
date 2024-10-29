@@ -2,7 +2,7 @@ import React from 'react';
 import Link from 'next/link';
 import { PageHeader, LogoContainer } from '@lib';
 import NasaLogo from '../../public/images/nasa-logo';
-import { NavItem, NavItemType } from '@lib';
+import { NavItem } from '@lib';
 
 const navItems: NavItem[]  = [
   {
