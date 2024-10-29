@@ -150,6 +150,6 @@ table {
 }
 
 .hug-reset-container {
-  display:grid;
+  display: grid;
   grid-column: 1 / -1;
 }
