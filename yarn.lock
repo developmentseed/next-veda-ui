@@ -303,10 +303,10 @@
     style-mod "^4.1.0"
     w3c-keyname "^2.2.4"
 
-"@developmentseed/veda-ui@v5.7.0-alpha.1":
-  version "5.7.0-alpha.1"
-  resolved "http://verdaccio.ds.io:4873/@developmentseed%2fveda-ui/-/veda-ui-5.7.0-alpha.1.tgz#8383fd94525b38fe5d5a9cb2a77165488825a6ab"
-  integrity sha512-7GWI3oM8MiRO9gQklHtV7MEUf0kbipTvvjvTmPdZGtYS/SV+EA9WiHLoL6tg9oGN90gW0OBsuwJDHt6CbWuzDQ==
+"@developmentseed/veda-ui@v5.8.0-ea.0":
+  version "5.8.0-ea.0"
+  resolved "http://verdaccio.ds.io:4873/@developmentseed%2fveda-ui/-/veda-ui-5.8.0-ea.0.tgz#321e5f476c04b97348844ece720458e9e4995058"
+  integrity sha512-dglUBWmajbPRz4XhCIsu13FtTDk9OpD4STL/Mitk1E0fFp/XRr0DrYwD4+CN7wUF/+0RatlhSpFT6fcCVf1Elg==
   dependencies:
     "@codemirror/lang-markdown" "^6.1.1"
     "@codemirror/state" "^6.2.1"

@@ -1,17 +1,16 @@
 'use client';
 import React, { useState } from 'react';
-import { useAtom } from 'jotai';
 import Link from 'next/link';
-import { ExplorationAndAnalysis, timelineDatasetsAtom, DatasetSelectorModal } from 'app/lib';
+import { ExplorationAndAnalysis, DatasetSelectorModal, useTimelineDatasetAtom } from 'app/lib';
 
 export default function ExplorationAnalysis({
   datasets
 }: {
   datasets: any;
 }) {
-  const [explorationDatasets, setExplorationDatasets] = useAtom(timelineDatasetsAtom);
+  const [timelineDatasets, setTimelineDatasets] = useTimelineDatasetAtom();
   const [datasetModalRevealed, setDatasetModalRevealed] = useState(
-    !!datasets.length
+    !timelineDatasets.length
   );
 
   
@@ -51,12 +50,14 @@ export default function ExplorationAnalysis({
             LinkElement: Link,
             pathAttributeKeyName: 'href'
           }}
+          timelineDatasets={timelineDatasets}
+          setTimelineDatasets={setTimelineDatasets}
           datasetPathName={'data-catalog'}
           datasets={transformed}
         />
       )
     }
-    <ExplorationAndAnalysis datasets={explorationDatasets} setDatasets={setExplorationDatasets} openDatasetsSelectionModal={openModal} />
+    <ExplorationAndAnalysis datasets={timelineDatasets} setDatasets={setTimelineDatasets} openDatasetsSelectionModal={openModal} />
     </>
   )
 };

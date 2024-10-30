@@ -5,7 +5,6 @@ import { PageHero } from 'app/lib';
 
 export default function Page() {
   const datasets: any[] = getDatasets();
-
   // @TODO: Investigate why we need to set 100vh
   return (
     <section style={{height: "100vh"}}> 
