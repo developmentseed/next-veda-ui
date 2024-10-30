@@ -41,8 +41,8 @@ export default function ExplorationAnalysis({
 
   return (
     <>
-    {
-      datasetModalRevealed && (
+    
+    
         <DatasetSelectorModal
           revealed={datasetModalRevealed}
           close={closeModal}
@@ -55,9 +55,12 @@ export default function ExplorationAnalysis({
           datasetPathName={'data-catalog'}
           datasets={transformed}
         />
-      )
-    }
-    <ExplorationAndAnalysis datasets={timelineDatasets} setDatasets={setTimelineDatasets} openDatasetsSelectionModal={openModal} />
+
+
+    <ExplorationAndAnalysis
+      datasets={timelineDatasets} 
+      setDatasets={setTimelineDatasets} 
+      openDatasetsSelectionModal={openModal} />
     </>
   )
 };
