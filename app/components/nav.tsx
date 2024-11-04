@@ -1,26 +1,22 @@
 import React from 'react';
 import Link from 'next/link';
-import { NavItem } from '@lib';
-
-// interface NavItem {
-//   // @TODO: To be replaced with exposed NavItem type from veda-ui
-//   path: string;
-//   title: string;
-//   subItems?: NavItem[];
-// }
+import { NavItem, NavItemType } from '@lib';
 
 const navItems: NavItem[]  = [
   {
-    path: '/',
     title: 'Home',
+    to: '/',
+    type: NavItemType.INTERNAL_LINK
   },
   {
-    path: '/data-catalog',
     title: 'Data Catalog',
+    to: '/data-catalog',
+    type: NavItemType.INTERNAL_LINK
   },
   {
-    path: '/stories',
     title: 'Stories',
+    to: '/stories',
+    type: NavItemType.INTERNAL_LINK
   },
 ];
 
@@ -33,11 +29,11 @@ export function Navbar() {
           id='nav'
         >
           <div className='flex flex-row space-x-0 pr-10'>
-            {navItems.map(({ path, title }) => {
+            {navItems.map(({ to, title }) => {
               return (
                 <Link
-                  key={path}
-                  href={path}
+                  key={to}
+                  href={to}
                   className='transition-all hover:text-neutral-800 dark:hover:text-neutral-200 flex align-middle relative py-1 px-2 m-1'
                 >
                   {title}
