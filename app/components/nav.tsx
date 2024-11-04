@@ -2,23 +2,23 @@ import React from 'react';
 import Link from 'next/link';
 import { PageHeader, LogoContainer } from '@lib';
 import NasaLogo from '../../public/images/nasa-logo';
-import { NavItem } from '@lib';
+import { NavItem, NavItemType } from '@lib';
 
 const navItems: NavItem[]  = [
   {
     title: 'Home',
     to: '/',
-    type: 'internalLink',
+    type: NavItemType.INTERNAL_LINK
   },
   {
-    title: 'datasets',
-    to: '/datasets',
-    type: 'internalLink',
+    title: 'Data Catalog',
+    to: '/data-catalog',
+    type: NavItemType.INTERNAL_LINK
   },
   {
     title: 'Stories',
     to: '/stories',
-    type: 'internalLink',
+    type: NavItemType.INTERNAL_LINK
   },
 ];
 
