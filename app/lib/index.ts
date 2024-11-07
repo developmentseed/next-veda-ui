@@ -18,9 +18,6 @@ import {
   NavItemType,
   PageHeader,
   LogoContainer,
-  NavItem,
-  InternalNavLink,
-  NavItemType,
 } from '@developmentseed/veda-ui';
 
 /**
