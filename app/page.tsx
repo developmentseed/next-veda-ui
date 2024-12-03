@@ -6,7 +6,7 @@ export default function HomePage() {
     <PageHero
       title='VEDA UI Template Instance'
       description='This is this template instance using the veda-ui refactored npm library and in integration with USWDS'
-      coverSrc='./public/images/root-welcome--cover.jpg'
+      coverSrc='/images/root-welcome--cover.jpg'
       coverAlt='welcome-image'
     />
   );
