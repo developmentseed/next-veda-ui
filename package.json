@@ -12,7 +12,7 @@
     "fix": "yarn run format && yarn run lint:fix"
   },
   "dependencies": {
-    "@developmentseed/veda-ui": "v5.11.0",
+    "@developmentseed/veda-ui": "v5.11.3-ph-a",
     "@devseed-ui/theme-provider": "^4.1.0",
     "@tailwindcss/postcss": "4.0.0-alpha.13",
     "@types/node": "20.11.17",
