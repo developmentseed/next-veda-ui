@@ -1,6 +1,6 @@
-'use client';
-import { PageFooter } from '@developmentseed/veda-ui';
 import React from 'react';
+
+import { PageFooter } from '@lib';
 import { navItems, subNavItems } from './nav';
 import NasaLogoColor from './nasa-logo-color.js';
 
@@ -16,7 +16,7 @@ const defaultFooterSettings = {
   returnToTop: true,
 };
 
-export default function Footer() {
+export function Footer() {
   return (
     <PageFooter
       settings={defaultFooterSettings}
