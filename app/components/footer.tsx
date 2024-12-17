@@ -6,9 +6,12 @@ import NasaLogoColor from './nasa-logo-color.js';
 
 const defaultFooterSettings = {
   secondarySection: {
-    title: 'email test',
-    to: '/data-catalog',
-    type: 'Email',
+    division: 'NASA EarthData 2024',
+    version: 'BETA VERSION',
+    title: 'NASA Official',
+    name: 'Manil Maskey',
+    to: 'test@example.com',
+    type: 'email',
   },
   returnToTop: true,
 };
@@ -17,10 +20,8 @@ export default function Footer() {
   return (
     <PageFooter
       settings={defaultFooterSettings}
-      primarySection={{
-        mainNavItems: navItems,
-        subNavItems: subNavItems,
-      }}
+      mainNavItems={navItems}
+      subNavItems={subNavItems}
       hideFooter={false}
       logoSvg={<NasaLogoColor />}
     />
