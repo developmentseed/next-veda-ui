@@ -1,19 +1,8 @@
 import React from 'react';
 
-import imgEnthusiasts from '/images/homepage/user-enthusiasts.jpg';
-import imgScientists from '/images/homepage/user-scientists.jpg';
-import imgResearcher from '/images/homepage/user-researcher.jpg';
-
-import {
-  Fold,
-  FoldHeader,
-  FoldTitle,
-  FoldLead,
-  FoldBody
-} from '$components/common/fold';
-import { Figure } from '$components/common/figure';
-import { VarProse } from '$styles/variable-components';
-import { variableGlsp } from '$styles/variable-utils';
+import imgEnthusiasts from '/public/images/homepage/user-enthusiasts.jpg';
+import imgScientists from '/public/images/homepage/user-scientists.jpg';
+import imgResearcher from '/public/images/homepage/user-researcher.jpg';
 
 const BlockAudience = styled.article`
   display: flex;
