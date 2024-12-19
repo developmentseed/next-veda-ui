@@ -23,7 +23,8 @@ import {
   timelineDatasetsAtom,
   useTimelineDatasetAtom,
   StoriesHubContent,
-  externalDatasetsAtom
+  PageFooter,
+  externalDatasetsAtom,
 } from '@developmentseed/veda-ui';
 
 /**
@@ -46,6 +47,7 @@ export {
   ExplorationAndAnalysis,
   DatasetSelectorModal,
   StoriesHubContent,
+  PageFooter,
 
   // MDX Components
   Block,
@@ -62,7 +64,7 @@ export {
   // State
   timelineDatasetsAtom,
   useTimelineDatasetAtom,
-  externalDatasetsAtom
+  externalDatasetsAtom,
 };
 
 export type { NavItem, InternalNavLink };

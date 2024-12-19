@@ -2,44 +2,43 @@ import React from 'react';
 import Link from 'next/link';
 import { PageHeader } from '@lib';
 import { NavItem } from '@lib';
-import NasaLogoColor from 'app/components/nasa-logo-color.js';
+import NasaLogoColor from './nasa-logo-color.js';
 
-
-const navItems: NavItem[] = [
+export const navItems: NavItem[] = [
   {
     id: 'data-catalog',
     title: 'Data Catalog',
     to: '/data-catalog',
-    type: 'internalLink'
+    type: 'internalLink',
   },
   {
     id: 'exploration',
     title: 'Exploration',
     to: '/exploration',
-    type: 'internalLink'
+    type: 'internalLink',
   },
   {
     id: 'stories',
     title: 'Stories',
     to: '/stories',
-    type: 'internalLink'
-  }
+    type: 'internalLink',
+  },
 ];
 
-const subNavItems: NavItem[] = [
+export const subNavItems: NavItem[] = [
   {
     id: 'about',
     title: 'About',
     to: '/about',
-    type: 'internalLink'
+    type: 'internalLink',
   },
   {
     id: 'contact-us',
     title: 'Contact us',
     actionId: 'open-google-form',
-    type: 'action'
-  }
-]
+    type: 'action',
+  },
+];
 
 export function Navbar() {
   const linkProps = {
