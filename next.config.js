@@ -41,4 +41,11 @@ module.exports = {
     };
     return config;
   },
+  sassOptions: {
+    includePaths: [
+      'node_modules/@uswds/uswds',
+      'node_modules/@uswds/uswds/dist',
+      'node_modules/@uswds/uswds/packages',
+    ]
+  }
 };

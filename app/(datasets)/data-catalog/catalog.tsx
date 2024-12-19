@@ -1,22 +1,21 @@
 'use client';
 import React from 'react';
 import { CatalogView, useFiltersWithQS } from '@lib';
-import { usePathname } from 'next/navigation';
-import Link from 'next/link';
+import { useRouter } from 'next/navigation';
 
 export default function Catalog({ datasets }: { datasets: any }) {
-  const pathname = usePathname();
   const controlVars = useFiltersWithQS();
+  const router = useRouter();
+
+  const handleCardNavigation = (path: string) => {
+    router.push(path);
+  };
 
   return (
     <CatalogView
       datasets={datasets}
       onFilterChanges={() => controlVars}
-      pathname={pathname}
-      linkProperties={{
-        LinkElement: Link,
-        pathAttributeKeyName: 'href',
-      }}
+      onCardNavigate={handleCardNavigation}
     />
   );
 }

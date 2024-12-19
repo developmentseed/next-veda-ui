@@ -1,4 +1,3 @@
-import './global.css';
 import React from 'react';
 import type { Metadata } from 'next';
 import { Navbar } from './components/nav';
@@ -6,6 +5,10 @@ import { Footer } from './components/footer';
 import { baseUrl } from './sitemap';
 import dynamic from 'next/dynamic';
 import { EnvConfigProvider } from '@lib';
+
+import './styles/index.scss';
+
+import '@developmentseed/veda-ui/lib/main.css';
 
 const DevSeedUIThemeProvider = dynamic(
   () => import('app/store/providers/theme'),
