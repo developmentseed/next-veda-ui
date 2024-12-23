@@ -9,11 +9,12 @@ export default function Page() {
   const transformed = transformData(posts);
 
   return (
-    <section>
-      <h1 className='font-semibold text-2xl mb-8 tracking-tighter'>Datasets</h1>
-      <Suspense fallback={<>Loading...</>}>
-        <Catalog datasets={transformed} />
-      </Suspense>
-    </section>
+    <div className='grid-container'>
+      <section>
+        <Suspense fallback={<>Loading...</>}>
+          <Catalog datasets={transformed} />
+        </Suspense>
+      </section>
+    </div>
   );
 }

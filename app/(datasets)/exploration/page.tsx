@@ -8,12 +8,12 @@ export default function Page() {
   return (
     <section>
       <div
+        id='ea-wrapper'
         // The below styles adjust the E&A page to match what we have on earthdata.nasa.gov
         // Ideally, we would replace some of the custom styles with the USWDS grid and util classes
         // but since we do not have USWDS yet in the template instance, this is a quick workaround
         // to make the page look closer to the current E&A page.
         style={{
-          height: 'calc(100vh - 64px)',
           position: 'absolute',
           width: '100%',
         }}
