@@ -18,8 +18,7 @@
     "paths": {
       "@lib": ["app/lib"],
       "@lib/*": ["app/lib/*"],
-      "@utils/*": ["app/utilities/*"],
-      "@helpers/*": ["app/utilities/helpers/*"]
+      "@utils/*": ["app/utilities/*"]
     },
     "plugins": [
       {
