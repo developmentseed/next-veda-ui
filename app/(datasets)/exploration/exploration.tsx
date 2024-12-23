@@ -37,7 +37,6 @@ export default function ExplorationAnalysis({ datasets }: { datasets: any }) {
       // E&A is supposed to fill up whichever space given
       // Adjusting the container's height so the page with E&A doesn't overflow.
       style={{
-        position: 'absolute',
         width: '100%',
         height: `calc(100vh - ${offsetHeight}px)`,
       }}
