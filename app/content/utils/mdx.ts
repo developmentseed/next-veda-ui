@@ -114,6 +114,10 @@ export function getDatasets() {
   return getMDXData(path.join(process.cwd(), 'app', 'content', 'datasets'));
 }
 
+export function getTransformedDatasetMetadata() {
+  return transformData(getDatasetsMetadata());
+}
+
 export function getTransformedDatasets() {
   return transformData(getDatasets());
 }

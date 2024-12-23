@@ -3,6 +3,9 @@ import React, { ReactNode } from 'react';
 import { createUITheme } from '@devseed-ui/theme-provider';
 import { DevseedUiThemeProvider, PageMainContent } from '@lib';
 
+// Values here should be manually synced until we consolidate all the styles to USWDS
+// Be mindful that these values are used more for VEDA UI component, not for instance
+// Use this page to look up the value: https://designsystem.digital.gov/design-tokens/color/system-tokens/
 const VEDA_OVERRIDE_THEME = {
   zIndices: {
     hide: -1,
@@ -16,9 +19,10 @@ const VEDA_OVERRIDE_THEME = {
     toast: 1700,
     tooltip: 1800,
   },
+
   color: {
     base: '#2c3e50',
-    primary: '#2276ac',
+    primary: '#d83933',
     link: '#FFFFFF',
     danger: '#FC3D21',
     infographicA: '#fcab10',
