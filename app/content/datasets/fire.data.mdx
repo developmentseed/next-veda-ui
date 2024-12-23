@@ -1,0 +1,34 @@
+---
+id: fire
+name: 'EIS Fire'
+description: "EIS Fire."
+media:
+  src: /images/dataset/no2--dataset-cover.jpg
+  alt: Power plant shooting steam at the sky.
+  author:
+    name: Mick Truyts
+    url: https://unsplash.com/photos/x6WQeNYJC1w
+taxonomy:
+  - name: Topics
+    values:
+      - Covid 19
+  - name: Sector
+    values:
+      - Agriculture, Forestry and Land Use
+      - Energy
+  - name: Producer
+    values:
+      - NIST
+  - name: Gas Emission
+    values:
+      - COx
+layers:
+  - id: eis_fire_perimeter
+    stacCol: eis_fire_perimeter
+    name: Fire
+    type: vector
+    description: eis_fire_perimeter
+    zoomExtent:
+      - 5
+      - 20
+---
