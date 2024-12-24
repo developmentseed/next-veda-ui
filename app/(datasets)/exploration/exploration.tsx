@@ -7,35 +7,19 @@ import {
   useTimelineDatasetAtom,
   externalDatasetsAtom,
 } from 'app/lib';
+
 import { useSetAtom } from 'jotai';
+import useElemengHeight from '@utils/hooks/use-element-height';
 
 export default function ExplorationAnalysis({ datasets }: { datasets: any }) {
-  const transformData = () => {
-    const data = datasets?.map((post) => ({
-      ...post.metadata,
-    }));
-
-    const result = data?.map((d) => {
-      const updatedTax = d.taxonomy.map((t) => {
-        const updatedVals = t.values.map((v) => {
-          return {
-            id: v.replace(/ /g, '_').toLowerCase(),
-            name: v,
-          };
-        });
-        return { ...t, values: updatedVals };
-      });
-      return { ...d, taxonomy: updatedTax };
-    });
-
-    return result;
-  };
-
-  const transformed = transformData();
-
   const setExternalDatasets = useSetAtom(externalDatasetsAtom);
 
-  setExternalDatasets(transformed);
+  setExternalDatasets(datasets);
+
+  const [timelineDatasets, setTimelineDatasets] = useTimelineDatasetAtom();
+  const [datasetModalRevealed, setDatasetModalRevealed] = useState(
+    !timelineDatasets.length,
+  );
 
   const openModal = () => {
     setDatasetModalRevealed(true);
@@ -43,14 +27,20 @@ export default function ExplorationAnalysis({ datasets }: { datasets: any }) {
   const closeModal = () => {
     setDatasetModalRevealed(false);
   };
-
-  const [timelineDatasets, setTimelineDatasets] = useTimelineDatasetAtom();
-  const [datasetModalRevealed, setDatasetModalRevealed] = useState(
-    !timelineDatasets.length,
-  );
+  // On landing, measure the height of Header and fill up the rest of the space with E&A
+  const offsetHeight = useElemengHeight({ queryToSelect: 'header' });
 
   return (
-    <>
+    <div
+      id='ea-wrapper'
+      // The below styles adjust the E&A page to match what we have on earthdata.nasa.gov
+      // E&A is supposed to fill up whichever space given
+      // Adjusting the container's height so the page with E&A doesn't overflow.
+      style={{
+        width: '100%',
+        height: `calc(100vh - ${offsetHeight}px)`,
+      }}
+    >
       <DatasetSelectorModal
         revealed={datasetModalRevealed}
         close={closeModal}
@@ -61,7 +51,7 @@ export default function ExplorationAnalysis({ datasets }: { datasets: any }) {
         timelineDatasets={timelineDatasets}
         setTimelineDatasets={setTimelineDatasets}
         datasetPathName={'data-catalog'}
-        datasets={transformed}
+        datasets={datasets}
       />
 
       <ExplorationAndAnalysis
@@ -69,6 +59,6 @@ export default function ExplorationAnalysis({ datasets }: { datasets: any }) {
         setDatasets={setTimelineDatasets}
         openDatasetsSelectionModal={openModal}
       />
-    </>
+    </div>
   );
 }

@@ -6,40 +6,6 @@ import { DatasetLayer, StoryData } from 'app/types/veda';
 
 const md = markdownit();
 
-export function resolveConfigFunctions<T>(datum, bag);
-export function resolveConfigFunctions<T extends any[]>(datum, bag);
-export function resolveConfigFunctions(datum, bag): any {
-  if (Array.isArray(datum)) {
-    return datum.map((v) => resolveConfigFunctions(v, bag));
-  }
-
-  if (datum != null && typeof datum === 'object') {
-    // Use for loop instead of reduce as it faster.
-    const ready = {};
-    for (const [k, v] of Object.entries(datum as object)) {
-      ready[k] = resolveConfigFunctions(v, bag);
-    }
-    return ready;
-  }
-
-  if (typeof datum === 'function') {
-    try {
-      return datum(bag);
-    } catch (error) {
-      /* eslint-disable-next-line no-console */
-      console.error(
-        'Failed to resolve function %s(%o) with error %s',
-        datum.name,
-        bag,
-        error.message,
-      );
-      return null;
-    }
-  }
-
-  return datum;
-}
-
 function parseAttributes(obj) {
   const convert = (obj) => {
     return Object.keys(obj).reduce(
@@ -115,6 +81,27 @@ function getMDXMetaData(dir) {
   });
 }
 
+const transformData = (content: any) => {
+  const data = content?.map((post) => ({
+    ...post.metadata,
+  }));
+
+  const result = data?.map((d) => {
+    const updatedTax = d.taxonomy.map((t) => {
+      const updatedVals = t.values.map((v) => {
+        return {
+          id: v.replace(/ /g, '_').toLowerCase(),
+          name: v,
+        };
+      });
+      return { ...t, values: updatedVals };
+    });
+    return { ...d, taxonomy: updatedTax };
+  });
+
+  return result;
+};
+
 export function getStoriesMetadata() {
   return getMDXMetaData(path.join(process.cwd(), 'app', 'content', 'stories'));
 }
@@ -125,6 +112,14 @@ export function getDatasetsMetadata() {
 
 export function getDatasets() {
   return getMDXData(path.join(process.cwd(), 'app', 'content', 'datasets'));
+}
+
+export function getTransformedDatasetMetadata() {
+  return transformData(getDatasetsMetadata());
+}
+
+export function getTransformedDatasets() {
+  return transformData(getDatasets());
 }
 
 export function getStories() {
