@@ -9,7 +9,7 @@ import {
 } from 'app/lib';
 
 import { useSetAtom } from 'jotai';
-import useElemengHeight from '@utils/hooks/use-element-height';
+import useElementHeight from '@utils/hooks/use-element-height';
 
 export default function ExplorationAnalysis({ datasets }: { datasets: any }) {
   const setExternalDatasets = useSetAtom(externalDatasetsAtom);
@@ -28,7 +28,7 @@ export default function ExplorationAnalysis({ datasets }: { datasets: any }) {
     setDatasetModalRevealed(false);
   };
   // On landing, measure the height of Header and fill up the rest of the space with E&A
-  const offsetHeight = useElemengHeight({ queryToSelect: 'header' });
+  const offsetHeight = useElementHeight({ queryToSelect: 'header' });
 
   return (
     <div
