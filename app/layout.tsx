@@ -1,7 +1,7 @@
 import React from 'react';
 import type { Metadata } from 'next';
 import { Navbar } from './components/nav';
-import Footer from './components/footer';
+import { Footer } from './components/footer';
 import { baseUrl } from './sitemap';
 import dynamic from 'next/dynamic';
 import { EnvConfigProvider } from '@lib';
