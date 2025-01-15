@@ -51,6 +51,7 @@ export function Navbar() {
     <PageHeader
       mainNavItems={navItems}
       subNavItems={subNavItems}
+      title='Earthdata VEDA Dashboard'
       logoSvg={
         <div id='logo-container-link'>
           {/*
@@ -60,10 +61,8 @@ export function Navbar() {
             TODO: Ideally we can address this on the veda-ui side so that the color applies to all elements within the logo.
           */}
           <NasaLogoColor />
-          <span style={{ color: '#1b1b1b' }}>Earthdata VEDA Dashboard</span>
         </div>
       }
-      linkProperties={linkProps}
     />
   );
 }
