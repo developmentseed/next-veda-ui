@@ -4,8 +4,10 @@ import React, { createContext, useContext, useState, ReactNode } from 'react';
 import { ReactQueryProvider } from '@lib';
 
 interface DataStore {
-  datasets?: any[];
+  datasets?: any[]; // @TODO: Update Type
+  stories?: any[]; // @TODO: Update Type
   setDatasets?: React.Dispatch<React.SetStateAction<any[] | undefined>>;
+  setStories?: React.Dispatch<React.SetStateAction<any[] | undefined>>;
 }
 
 export const DataContext = createContext<DataStore>({});
@@ -34,17 +36,25 @@ function updateMapLabels(data) {
 
 function DataProvider({
   initialDatasets = undefined,
+  initialStories = undefined,
   children,
 }: {
   children: JSX.Element | ReactNode;
   initialDatasets: any[] | undefined;
+  initialStories: any[] | undefined;
 }) {
   const [datasets, setDatasets] = useState<any[] | undefined>(
     updateMapLabels(initialDatasets),
   );
+
+  const [stories, setStories] = useState<any[] | undefined>(
+    initialStories,
+  );
   const value = {
     datasets,
     setDatasets,
+    stories,
+    setStories,
   };
 
   return (

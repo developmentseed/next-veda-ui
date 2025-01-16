@@ -29,6 +29,8 @@ import {
   Chart,
   DatasetData,
   VedaData,
+  Audience,
+  ValueProposition
 } from '@developmentseed/veda-ui';
 
 /**
@@ -51,6 +53,8 @@ export {
   ExplorationAndAnalysis,
   DatasetSelectorModal,
   StoriesHubContent,
+  Audience,
+  ValueProposition,
 
   // MDX Components
   Block,

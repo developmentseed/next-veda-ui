@@ -8,6 +8,7 @@ export default function Page() {
     path: `stories/${d.slug}`,
   }));
 
+
   return (
     <section>
       <div className='grid-container'>
