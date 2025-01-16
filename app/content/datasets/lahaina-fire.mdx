@@ -27,18 +27,12 @@ layers:
     zoomExtent:
       - 4
       - 20
-    sourceParams:
-      colormap_name: rdylbu_r
-      rescale: 0.5,1
-      resampling: bilinear
-      bidx: 1
-      nodata: -9999
     compare:
       datasetId: lahaina-fire
       layerId: landsat-nighttime-thermal
       mapLabel: |
         ::js ({ dateFns, datetime, compareDatetime }) => {
-          return `${dateFns.format(datetime, 'DD LLL yyyy')}`;        
+          return `${dateFns.format(datetime, 'dd LLL yyyy')}`;        
         }
     legend:
       type: gradient
@@ -65,17 +59,12 @@ layers:
     zoomExtent:
       - 0
       - 20
-    sourceParams:
-      rescale:
-        - 0,5000
-      resampling: bilinear
-      bidx: [1,2,3]
     compare:
       datasetId: lahaina-fire
       layerId: hls-swir-falsecolor-composite
       mapLabel: |
         ::js ({ dateFns, datetime, compareDatetime }) => {
-          return `${dateFns.format(datetime, 'DD LLL yyyy')}`;        
+          return `${dateFns.format(datetime, 'dd LLL yyyy')}`;        
         }
     info:
       source: NASA
@@ -93,20 +82,12 @@ layers:
       - 0
       - 20
 
-    sourceParams:
-      colormap_name: inferno
-      nodata: 0
-      resampling: bilinear
-      bidx: 1
-      rescale:
-        - 180
-        - 255
     compare:
       datasetId: lahaina-fire
       layerId: hls-bais2-v2
       mapLabel: |
         ::js ({ dateFns, datetime, compareDatetime }) => {
-          return `${dateFns.format(datetime, 'DD LLL yyyy')}`;        
+          return `${dateFns.format(datetime, 'dd LLL yyyy')}`;        
         }
             
     legend:
