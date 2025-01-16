@@ -35,7 +35,7 @@ export default function HomePage() {
         <PageHero
           title={`Welcome to the Earthdata VEDA Dashboard`}
           renderBetaBlock={betaBlock}
-          coverSrc={'../public/images/homepage/root-welcome--cover.jpg'}
+          coverSrc={'/images/homepage/root-welcome--cover.jpg'}
           coverAlt='Satellite imagery of Dasht-e Kevir, or Great Salt Desert, the largest desert in Iran.'
         />
         <br/>
