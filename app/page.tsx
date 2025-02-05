@@ -49,7 +49,7 @@ export default function HomePage() {
               >
                 <div>
                   <img
-                    className='image--outline-circle'
+                    className='radius-pill'
                     src='https://placehold.co/400x400'
                   ></img>
                 </div>

@@ -1,12 +1,5 @@
 @use 'uswds-core/src/styles/functions/units' as spacing;
 
-.image--outline-circle {
-  border-radius: 50%;
-}
-
-.card--homepage-main {
-  text-align: center;
-}
 
 .card--homepage-topstory {
   height: calc(350px + spacing.units(2));
