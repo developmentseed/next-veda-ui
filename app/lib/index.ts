@@ -29,6 +29,7 @@ import {
   Chapter,
   Chart,
   DatasetData,
+  StoryData,
   VedaData,
 } from '@teamimpact/veda-ui';
 
@@ -75,4 +76,4 @@ export {
   externalDatasetsAtom,
 };
 
-export type { DatasetData, NavItem, InternalNavLink, VedaData };
+export type { DatasetData, NavItem, InternalNavLink, StoryData, VedaData };

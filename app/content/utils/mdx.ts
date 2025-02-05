@@ -2,8 +2,20 @@ import fs from 'fs';
 import path from 'path';
 import matter from 'gray-matter';
 import markdownit from 'markdown-it';
-import { DatasetLayer, StoryData } from 'app/types/veda';
-import { transformToDatasetsList } from './data';
+import { transformToDatasetsList, processTaxonomies, isDataset } from './data';
+import type {
+  DatasetMetadata,
+  ContentMetdata,
+  DatasetWithContent,
+} from 'app/types/content';
+
+const STORY_COTENT_PATH = path.join(process.cwd(), 'app', 'content', 'stories');
+const DATASET_CONTENT_PATH = path.join(
+  process.cwd(),
+  'app',
+  'content',
+  'datasets',
+);
 
 const md = markdownit();
 
@@ -53,59 +65,56 @@ function readMDXFile(filePath) {
   return parsedData;
 }
 
-function getMDXData(dir) {
+function getMDXData(dir): ContentMetdata[] {
   const mdxFiles = getMDXFiles(dir);
   return mdxFiles.map((file) => {
     const { content, data } = readMDXFile(path.join(dir, file));
     const parsedData = parseAttributes(data);
+    const processedData = processTaxonomies(parsedData);
     const slug = path.basename(file, path.extname(file));
 
     return {
-      metadata: parsedData as DatasetLayer | StoryData,
+      metadata: processedData,
       slug,
       content,
     };
   });
 }
 
-function getMDXMetaData(dir) {
+function getMDXMetaData(dir: string): ContentMetdataWithSlug[] {
   const mdxFiles = getMDXFiles(dir);
   return mdxFiles.map((file) => {
     const { data } = readMDXFile(path.join(dir, file));
     const parsedData = parseAttributes(data);
+    const processedData = processTaxonomies(parsedData);
     const slug = path.basename(file, path.extname(file));
-
     return {
-      metadata: parsedData as DatasetLayer | StoryData,
+      metadata: processedData,
       slug,
     };
   });
 }
 
 export function getStoriesMetadata() {
-  return getMDXMetaData(path.join(process.cwd(), 'app', 'content', 'stories'));
-}
-
-export function getDatasetsMetadata() {
-  return getMDXMetaData(path.join(process.cwd(), 'app', 'content', 'datasets'));
-}
-
-export function getDatasets() {
-  return getMDXData(path.join(process.cwd(), 'app', 'content', 'datasets'));
-}
-
-export function getTransformedDatasetMetadata() {
-  return transformToDatasetsList(getDatasetsMetadata());
-}
-
-export function getTransformedDatasets() {
-  return transformToDatasetsList(getDatasets());
+  return getMDXMetaData(STORY_COTENT_PATH);
 }
 
 export function getStories() {
-  return getMDXData(path.join(process.cwd(), 'app', 'content', 'stories'));
+  return getMDXData(STORY_COTENT_PATH);
 }
 
-export function getBlogPosts() {
-  return getMDXData(path.join(process.cwd(), 'app', 'content', 'datasets'));
+export function getDatasetsMetadata() {
+  return getMDXMetaData(DATASET_CONTENT_PATH);
+}
+
+export function getDatasets() {
+  return getMDXData(DATASET_CONTENT_PATH);
+}
+
+export function getTransformedDatasetMetadata() {
+  return transformToDatasetsList(getDatasetsMetadata() as DatasetMetadata[]);
+}
+
+export function getTransformedDatasets() {
+  return transformToDatasetsList(getDatasets() as DatasetWithContent[]);
 }
