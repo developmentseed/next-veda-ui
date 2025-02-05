@@ -67,36 +67,34 @@ export default function HomePage() {
         </div>
         <div className='grid-row grid-gap-md  margin-top-2'>
           <div className='tablet:grid-col-6'>
-            <Link href={topStory.path}>
-              <div
-                className='card--homepage-topstory text-base-lightest radius-md display-flex flex-align-end padding-2'
-                style={{ backgroundImage: `url(${topStory.media?.src})` }}
-              >
-                <div className='card--homepage-topstory-text'>
-                  <h3> {topStory.name}</h3>
-                  <p className='margin-top-1'> {topStory.description}</p>
-                </div>
+            <div
+              className='card--homepage-topstory text-base-lightest radius-md display-flex flex-align-end padding-2'
+              style={{ backgroundImage: `url(${topStory.media?.src})` }}
+            >
+              <div className='card--homepage-topstory-text'>
+                <h3> {topStory.name}</h3>
+                <p className='margin-top-1'> {topStory.description}</p>
               </div>
-            </Link>
+              <Link className='link--block' href={topStory.path} />
+            </div>
           </div>
           <div className='tablet:grid-col-6'>
             {otherStories.map((d) => {
               return (
-                <Link key={d.id} href={d.path}>
-                  <div className='grid-row'>
-                    <div className='tablet:grid-col'>
-                      <div
-                        className='card--homepage-substory  text-base-lightest radius-md display-flex flex-align-end padding-2'
-                        style={{ backgroundImage: `url(${d.media?.src})` }}
-                      >
-                        <div className='card--homepage-topstory-text'>
-                          <h3> {d.name}</h3>
-                          <p className='margin-top-1'> {d.description}</p>
-                        </div>
+                <div key={d.id} className='grid-row'>
+                  <div className='tablet:grid-col'>
+                    <div
+                      className='card--homepage-substory text-base-lightest radius-md display-flex flex-align-end padding-2'
+                      style={{ backgroundImage: `url(${d.media?.src})` }}
+                    >
+                      <div className='card--homepage-topstory-text'>
+                        <h3> {d.name}</h3>
+                        <p className='margin-top-1'> {d.description}</p>
                       </div>
+                      <Link className='link--block' href={d.path} />
                     </div>
                   </div>
-                </Link>
+                </div>
               );
             })}
           </div>
