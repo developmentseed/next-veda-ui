@@ -3,6 +3,8 @@
 
 @use 'uswds-core' as *;
 
+@forward 'homepage';
+
 .veda__hug-reset-container {
   grid-column: 1 / -1;
 }
