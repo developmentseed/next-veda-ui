@@ -3,6 +3,7 @@ import Link from 'next/link';
 import { navItems, subNavItems } from './header';
 import NasaLogoColor from './nasa-logo-color';
 import { PageFooter } from '@lib';
+import VedaUIConfigProvider from 'app/store/providers/veda-ui';
 
 export default function Footer() {
   const defaultFooterSettings = {
@@ -17,13 +18,15 @@ export default function Footer() {
     returnToTop: true,
   };
   return (
-    <PageFooter
-      mainNavItems={navItems}
-      subNavItems={subNavItems}
-      hideFooter={false}
-      logoSvg={<NasaLogoColor />}
-      linkProperties={{ LinkElement: Link, pathAttributeKeyName: 'href' }}
-      footerSettings={defaultFooterSettings}
-    />
+    <VedaUIConfigProvider>
+      <PageFooter
+        mainNavItems={navItems}
+        subNavItems={subNavItems}
+        hideFooter={false}
+        logoSvg={<NasaLogoColor />}
+        linkProperties={{ LinkElement: Link, pathAttributeKeyName: 'href' }}
+        footerSettings={defaultFooterSettings}
+      />
+    </VedaUIConfigProvider>
   );
 }

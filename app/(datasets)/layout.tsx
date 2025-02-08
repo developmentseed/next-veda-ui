@@ -1,6 +1,8 @@
 import React, { ReactNode } from 'react';
 import DataProvider from 'app/store/providers/data';
 import { getDatasetsMetadata } from 'app/content/utils/mdx';
+import VedaUIConfigProvider from 'app/store/providers/veda-ui';
+import DevseedUIThemeProvider from 'app/store/providers/theme';
 
 export default function DatasetLayout({
   children,
@@ -9,5 +11,13 @@ export default function DatasetLayout({
 }) {
   const datasets = getDatasetsMetadata();
 
-  return <DataProvider initialDatasets={datasets}>{children}</DataProvider>;
+  return (
+    <DevseedUIThemeProvider>
+      <VedaUIConfigProvider>
+        <DataProvider initialDatasets={datasets}>
+          {children}
+        </DataProvider>
+      </VedaUIConfigProvider>
+    </DevseedUIThemeProvider>
+  );
 }
