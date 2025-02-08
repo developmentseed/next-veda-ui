@@ -1,18 +1,22 @@
 import React from 'react';
 import type { Metadata } from 'next';
-import Link from 'next/link';
 import Header from './components/header';
 import { baseUrl } from './sitemap';
 import dynamic from 'next/dynamic';
-import { VedaUIProvider } from '@lib';
 import Footer from './components/footer';
 
 import './styles/index.scss';
 
 import '@teamimpact/veda-ui/lib/main.css';
 
+// @NOTE: Conditionally load provider to make sure its only CSR
 const DevSeedUIThemeProvider = dynamic(
   () => import('app/store/providers/theme'),
+  { ssr: false },
+);
+
+const VedaUIConfigProvider = dynamic(
+  () => import('app/store/providers/veda-ui'),
   { ssr: false },
 );
 
@@ -53,27 +57,13 @@ export default function RootLayout({
     <html lang='en'>
       <body>
         <DevSeedUIThemeProvider>
-          <VedaUIProvider
-            config={{
-              envMapboxToken: process.env.NEXT_PUBLIC_MAPBOX_TOKEN ?? '',
-              envApiStacEndpoint:
-                process.env.NEXT_PUBLIC_API_STAC_ENDPOINT ?? '',
-              envApiRasterEndpoint:
-                process.env.NEXT_PUBLIC_API_RASTER_ENDPOINT ?? '',
-              navigation: {
-                LinkComponent: Link,
-                linkProps: {
-                  pathAttributeKeyName: 'href',
-                },
-              },
-            }}
-          >
+          <VedaUIConfigProvider>
             <div className='minh-viewport display-flex flex-column'>
               <Header />
               <div className='flex-fill'>{children}</div>
               <Footer />
             </div>
-          </VedaUIProvider>
+          </VedaUIConfigProvider>
         </DevSeedUIThemeProvider>
       </body>
     </html>
