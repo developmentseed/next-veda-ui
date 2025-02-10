@@ -5,11 +5,16 @@ import markdownit from 'markdown-it';
 import { transformToDatasetsList, processTaxonomies, isDataset } from './data';
 import type {
   DatasetMetadata,
-  ContentMetdata,
+  ContentMetadata,
   DatasetWithContent,
 } from 'app/types/content';
 
-const STORY_COTENT_PATH = path.join(process.cwd(), 'app', 'content', 'stories');
+const STORY_CONTENT_PATH = path.join(
+  process.cwd(),
+  'app',
+  'content',
+  'stories',
+);
 const DATASET_CONTENT_PATH = path.join(
   process.cwd(),
   'app',
@@ -65,7 +70,7 @@ function readMDXFile(filePath) {
   return parsedData;
 }
 
-function getMDXData(dir): ContentMetdata[] {
+function getMDXData(dir): ContentMetadata[] {
   const mdxFiles = getMDXFiles(dir);
   return mdxFiles.map((file) => {
     const { content, data } = readMDXFile(path.join(dir, file));
@@ -81,7 +86,7 @@ function getMDXData(dir): ContentMetdata[] {
   });
 }
 
-function getMDXMetaData(dir: string): ContentMetdataWithSlug[] {
+function getMDXMetaData(dir: string): ContentMetadata[] {
   const mdxFiles = getMDXFiles(dir);
   return mdxFiles.map((file) => {
     const { data } = readMDXFile(path.join(dir, file));
@@ -96,11 +101,11 @@ function getMDXMetaData(dir: string): ContentMetdataWithSlug[] {
 }
 
 export function getStoriesMetadata() {
-  return getMDXMetaData(STORY_COTENT_PATH);
+  return getMDXMetaData(STORY_CONTENT_PATH);
 }
 
 export function getStories() {
-  return getMDXData(STORY_COTENT_PATH);
+  return getMDXData(STORY_CONTENT_PATH);
 }
 
 export function getDatasetsMetadata() {

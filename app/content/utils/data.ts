@@ -1,8 +1,5 @@
 import type { DatasetData, StoryData, VedaData } from '@lib';
-import type {
-  DatasetMetadataWithSlug,
-  DatasetWithContent,
-} from 'app/types/content';
+import type { DatasetMetadata, DatasetWithContent } from 'app/types/content';
 
 export function isDataset(data) {
   return data.layers;
@@ -22,7 +19,7 @@ export function processTaxonomies(data): DatasetData | StoryData {
 }
 
 export const transformToDatasetsList = (
-  content: DatasetMetadataWithSlug[],
+  content: DatasetMetadata[],
 ): DatasetData[] => {
   return content?.map((post) => ({
     ...post.metadata,
