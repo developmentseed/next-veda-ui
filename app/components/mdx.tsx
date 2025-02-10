@@ -5,6 +5,8 @@ import { highlight } from 'sugar-high';
 
 import { Block, Prose, Caption, Chapter, Figure, Image, CompareImage, Chart } from '@lib';
 import { EnhancedMapBlock, EnhancedScrollyTellingBlock } from './mdx-components/block';
+import { getDatasetsMetadata } from 'app/content/utils/mdx';
+import Providers from 'app/(datasets)/providers';
 
 function Table({ data }: { data: any }) {
   const headers = data.headers.map((header, index) => (
@@ -89,12 +91,15 @@ const components = {
 };
 
 export function CustomMDX(props: any) {
+  const datasets = getDatasetsMetadata();
   return (
-    <MDXRemote
-      {...props}
-      components={{ ...components, ...(props.components || {}) }}
-    >
-      {props.children}
-    </MDXRemote>
+    <Providers datasets={datasets}>
+      <MDXRemote
+        {...props}
+        components={{ ...components, ...(props.components || {}) }}
+      >
+        {props.children}
+      </MDXRemote>
+    </Providers>
   );
 }

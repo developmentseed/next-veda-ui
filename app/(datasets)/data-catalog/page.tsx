@@ -9,6 +9,7 @@ export default function Page() {
   return (
     <div className='grid-container'>
       <section>
+        <h1 className='font-ui-lg'>Data Catalog</h1>
         <Suspense fallback={<>Loading...</>}>
           <Catalog datasets={transformed} />
         </Suspense>
