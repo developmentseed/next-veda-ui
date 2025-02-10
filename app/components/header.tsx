@@ -8,6 +8,7 @@ import {
   EXPLORATION_PATH,
   STORY_HUB_PATH,
 } from 'app/config';
+
 export const navItems: NavItem[] = [
   {
     id: 'data-catalog',

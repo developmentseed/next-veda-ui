@@ -1,0 +1,19 @@
+@use 'uswds-core/src/styles/functions/units' as spacing;
+
+
+.card--homepage-topstory {
+  height: calc(350px + spacing.units(2));
+  background-size: cover;
+}
+
+.card--homepage-substory {
+  height: 175px;
+  background-size: cover;
+}
+
+.card--homepage-substory {
+  &:first-child {
+    margin-bottom: spacing.units(2);
+  }
+  
+}
