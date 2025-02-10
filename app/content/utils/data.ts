@@ -1,10 +1,6 @@
 import type { DatasetData, StoryData, VedaData } from '@lib';
 import type { DatasetMetadata, DatasetWithContent } from 'app/types/content';
 
-export function isDataset(data) {
-  return data.layers;
-}
-
 export function processTaxonomies(data): DatasetData | StoryData {
   const updatedTax = data.taxonomy.map((t) => {
     const updatedVals = t.values.map((v) => {

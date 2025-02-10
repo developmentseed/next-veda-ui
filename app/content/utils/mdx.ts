@@ -2,7 +2,7 @@ import fs from 'fs';
 import path from 'path';
 import matter from 'gray-matter';
 import markdownit from 'markdown-it';
-import { transformToDatasetsList, processTaxonomies, isDataset } from './data';
+import { transformToDatasetsList, processTaxonomies } from './data';
 import type {
   DatasetMetadata,
   ContentMetadata,
