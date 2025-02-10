@@ -2,6 +2,7 @@
 import React from 'react';
 import { CatalogView, useFiltersWithQS } from '@lib';
 import { useRouter } from 'next/navigation';
+import Providers from '../providers';
 
 export default function Catalog({ datasets }: { datasets: any }) {
   const controlVars = useFiltersWithQS();
@@ -12,10 +13,12 @@ export default function Catalog({ datasets }: { datasets: any }) {
   };
 
   return (
-    <CatalogView
-      datasets={datasets}
-      onFilterChanges={() => controlVars}
-      onCardNavigate={handleCardNavigation}
-    />
+    <Providers>
+      <CatalogView
+        datasets={datasets}
+        onFilterChanges={() => controlVars}
+        onCardNavigate={handleCardNavigation}
+      />
+    </Providers>
   );
 }

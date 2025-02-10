@@ -4,6 +4,7 @@ import { CustomMDX } from 'app/components/mdx';
 import { getDatasets } from 'app/content/utils/mdx';
 import { baseUrl } from 'app/sitemap';
 import { PageHero } from '@lib';
+import Providers from 'app/(datasets)/providers';
 
 function generateStaticParams() {
   const posts = getDatasets();
@@ -51,7 +52,6 @@ export function generateMetadata({ params }) {
 
 export default function Blog({ params }: { params: any }) {
   const post = getDatasets().find((post) => post.slug === params.slug);
-
   if (!post) {
     notFound();
   }
@@ -59,12 +59,14 @@ export default function Blog({ params }: { params: any }) {
   return (
     <section>
       <article className='prose'>
-        <PageHero
-          title={post.metadata.name}
-          description={post.metadata.description}
-          coverSrc={post.metadata.media?.src}
-          coverAlt={post.metadata.media?.alt}
-        />
+        <Providers>
+          <PageHero
+            title={post.metadata.name}
+            description={post.metadata.description}
+            coverSrc={post.metadata.media?.src}
+            coverAlt={post.metadata.media?.alt}
+          />
+        </Providers>
         <CustomMDX source={post.content} />
       </article>
     </section>
