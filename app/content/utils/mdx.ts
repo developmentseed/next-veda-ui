@@ -7,6 +7,8 @@ import type {
   DatasetMetadata,
   ContentMetadata,
   DatasetWithContent,
+  StoryWithContent,
+  StoryMetadata,
 } from 'app/types/content';
 
 const STORY_CONTENT_PATH = path.join(
@@ -100,26 +102,26 @@ function getMDXMetaData(dir: string): ContentMetadata[] {
   });
 }
 
-export function getStoriesMetadata() {
-  return getMDXMetaData(STORY_CONTENT_PATH);
+export function getStoriesMetadata(): StoryMetadata[] {
+  return getMDXMetaData(STORY_CONTENT_PATH) as StoryMetadata[];
 }
 
 export function getStories() {
-  return getMDXData(STORY_CONTENT_PATH);
+  return getMDXData(STORY_CONTENT_PATH) as StoryWithContent[];
 }
 
-export function getDatasetsMetadata() {
-  return getMDXMetaData(DATASET_CONTENT_PATH);
+export function getDatasetsMetadata(): DatasetMetadata[] {
+  return getMDXMetaData(DATASET_CONTENT_PATH) as DatasetMetadata[];
 }
 
-export function getDatasets() {
-  return getMDXData(DATASET_CONTENT_PATH);
+export function getDatasets(): DatasetWithContent[] {
+  return getMDXData(DATASET_CONTENT_PATH) as DatasetWithContent[];
 }
 
 export function getTransformedDatasetMetadata() {
-  return transformToDatasetsList(getDatasetsMetadata() as DatasetMetadata[]);
+  return transformToDatasetsList(getDatasetsMetadata());
 }
 
 export function getTransformedDatasets() {
-  return transformToDatasetsList(getDatasets() as DatasetWithContent[]);
+  return transformToDatasetsList(getDatasets());
 }

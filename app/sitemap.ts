@@ -1,17 +1,35 @@
-import { getBlogPosts } from 'app/content/utils/mdx';
+import { getDatasetsMetadata, getStoriesMetadata } from 'app/content/utils/mdx';
 
-export const baseUrl = 'https://portfolio-blog-starter.vercel.app';
+export const baseUrl = process.env.DOMAIN_PROD;
+
+import {
+  DATASET_CATALOG_PATH,
+  EXPLORATION_PATH,
+  STORY_HUB_PATH,
+} from './config';
+
+const additionalRoutes = ['about'];
 
 export default async function sitemap() {
-  const blogs = getBlogPosts().map((post) => ({
-    url: `${baseUrl}/content/${post.slug}`,
-    lastModified: post.metadata.publishedAt,
+  const datasets = getDatasetsMetadata().map((post) => ({
+    url: `${baseUrl}/${DATASET_CATALOG_PATH}/${post.slug}`,
   }));
 
-  const routes = ['', '/content'].map((route) => ({
+  const stories = getStoriesMetadata().map((post) => ({
+    url: `${baseUrl}/${STORY_HUB_PATH}/${post.slug}`,
+    lastModified: post.metadata.pubDate,
+  }));
+
+  const routes = [
+    '',
+    DATASET_CATALOG_PATH,
+    EXPLORATION_PATH,
+    STORY_HUB_PATH,
+    ...additionalRoutes,
+  ].map((route) => ({
     url: `${baseUrl}${route}`,
     lastModified: new Date().toISOString().split('T')[0],
   }));
 
-  return [...routes, ...blogs];
+  return [...routes, ...datasets, ...stories];
 }

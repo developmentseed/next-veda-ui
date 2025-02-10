@@ -10,6 +10,7 @@ import {
 
 import { useSetAtom } from 'jotai';
 import useElementHeight from '@utils/hooks/use-element-height';
+import { DATASET_CATALOG_PATH } from 'app/config';
 
 export default function ExplorationAnalysis({ datasets }: { datasets: any }) {
   const setExternalDatasets = useSetAtom(externalDatasetsAtom);
@@ -50,7 +51,7 @@ export default function ExplorationAnalysis({ datasets }: { datasets: any }) {
         }}
         timelineDatasets={timelineDatasets}
         setTimelineDatasets={setTimelineDatasets}
-        datasetPathName={'data-catalog'}
+        datasetPathName={DATASET_CATALOG_PATH}
         datasets={datasets}
       />
 
