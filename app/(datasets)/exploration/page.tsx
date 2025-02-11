@@ -1,7 +1,6 @@
 import React, { Suspense } from 'react';
 import dynamic from 'next/dynamic';
 import { getTransformedDatasetMetadata } from 'app/content/utils/mdx';
-import Providers from '../providers';
 
 const ExplorationAnalysis = dynamic(
   () => import('./exploration'),
@@ -16,9 +15,7 @@ export default function Page() {
   return (
     <section>
       <Suspense fallback={<>Loading...</>}>
-        <Providers datasets={datasets}>
-          <ExplorationAnalysis datasets={datasets} />
-        </Providers>
+        <ExplorationAnalysis datasets={datasets} />
       </Suspense>
     </section>
   );

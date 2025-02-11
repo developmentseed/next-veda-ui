@@ -7,9 +7,9 @@ import {
   useTimelineDatasetAtom,
   externalDatasetsAtom,
 } from 'app/lib';
-
 import { useSetAtom } from 'jotai';
 import useElementHeight from '@utils/hooks/use-element-height';
+import Providers from '../providers';
 
 export default function ExplorationAnalysis({ datasets }: { datasets: any }) {
   const setExternalDatasets = useSetAtom(externalDatasetsAtom);
@@ -31,34 +31,35 @@ export default function ExplorationAnalysis({ datasets }: { datasets: any }) {
   const offsetHeight = useElementHeight({ queryToSelect: 'header' });
 
   return (
-    <div
-      id='ea-wrapper'
-      // The below styles adjust the E&A page to match what we have on earthdata.nasa.gov
-      // E&A is supposed to fill up whichever space given
-      // Adjusting the container's height so the page with E&A doesn't overflow.
-      style={{
-        width: '100%',
-        height: `calc(100vh - ${offsetHeight}px)`,
-      }}
-    >
-      <DatasetSelectorModal
-        revealed={datasetModalRevealed}
-        close={closeModal}
-        linkProperties={{
-          LinkElement: Link,
-          pathAttributeKeyName: 'href',
+    <Providers datasets={datasets}>
+      <div
+        id='ea-wrapper'
+        // The below styles adjust the E&A page to match what we have on earthdata.nasa.gov
+        // E&A is supposed to fill up whichever space given
+        // Adjusting the container's height so the page with E&A doesn't overflow.
+        style={{
+          width: '100%',
+          height: `calc(100vh - ${offsetHeight}px)`,
         }}
-        timelineDatasets={timelineDatasets}
-        setTimelineDatasets={setTimelineDatasets}
-        datasetPathName={'data-catalog'}
-        datasets={datasets}
-      />
-
-      <ExplorationAndAnalysis
-        datasets={timelineDatasets}
-        setDatasets={setTimelineDatasets}
-        openDatasetsSelectionModal={openModal}
-      />
-    </div>
+      >
+        <DatasetSelectorModal
+          revealed={datasetModalRevealed}
+          close={closeModal}
+          linkProperties={{
+            LinkElement: Link,
+            pathAttributeKeyName: 'href',
+          }}
+          timelineDatasets={timelineDatasets}
+          setTimelineDatasets={setTimelineDatasets}
+          datasetPathName={'data-catalog'}
+          datasets={datasets}
+        />
+        <ExplorationAndAnalysis
+          datasets={timelineDatasets}
+          setDatasets={setTimelineDatasets}
+          openDatasetsSelectionModal={openModal}
+        />
+      </div>
+    </Providers>
   );
 }
